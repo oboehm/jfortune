@@ -8,7 +8,17 @@
   <packaging>jar</packaging>
 
   <name>jfortune</name>
+  <description>Java implementation of fortune, an old UNIX tool</description>
+  <inceptionYear>2017</inceptionYear>
   <url>https://github.com/oboehm/jfortune</url>
+
+  <!-- see http://maven.apache.org/pom.html#Licenses -->
+  <licenses>
+    <license>
+      <name>The Apache Software License, Version 2.0</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+    </license>
+  </licenses>
 
   <properties>
     <maven.compiler.source>1.4</maven.compiler.source>
@@ -18,15 +28,43 @@
 
   <dependencies>
     <dependency>
+      <groupId>log4j</groupId>
+      <artifactId>log4j</artifactId>
+      <version>1.2.17</version>
+    </dependency>
+    <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
-    <dependency>
-      <groupId>log4j</groupId>
-      <artifactId>log4j</artifactId>
-      <version>1.2.17</version>
-    </dependency>
   </dependencies>
+
+  <scm>
+    <connection>scm:git:git://github.com/oboehm/jfortune.git</connection>
+    <url>https://github.com/oboehm/jfortune</url>
+  </scm>
+
+  <issueManagement>
+    <system>github</system>
+    <url>https://github.com/oboehm/jfortune/issues</url>
+  </issueManagement>
+
+  <ciManagement>
+    <system>Travis CI</system>
+    <url>https://travis-ci.org/oboehm/jfortune</url>
+  </ciManagement>
+
+  <developers>
+    <developer>
+      <name>Oliver Boehm</name>
+      <id>oboehm</id>
+      <email>boehm@javatux.de</email>
+      <organization>JavaTux</organization>
+      <roles>
+        <role>Java Developer</role>
+      </roles>
+    </developer>
+  </developers>
+
 </project>
