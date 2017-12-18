@@ -11,3 +11,6 @@ Later it will be reworked, adapted to Java 8 and new features will be added.
 ---
 December 2017,
 Oli B.
+
+
+...[more](src/main/asciidoc/README.adoc)
