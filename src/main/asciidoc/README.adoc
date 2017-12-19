@@ -1,5 +1,25 @@
 = Documentation
 
+In this directory there are some additional information for the development.
+Other infos are present in the top link:../README.md[README].
+
+
+== CI Build
+
+.Build Server
+|===
+|server |master |develop |configuration
+
+|https://travis-ci.org/oboehm/jfortune/[Travis-CI.org]
+|https://travis-ci.org/oboehm/jfortune/[image:https://img.shields.io/travis/rust-lang/rust.svg?style=for-the-badge[Travis]]
+|https://travis-ci.org/oboehm/jfortune/branches[image:https://img.shields.io/travis/rust-lang/rust.svg?style=for-the-badge[Travis]]
+|s. link:../.travis.yml[.travis.yml]
+
+|===
+
+The CI build is started automatically after a commit and push to GitHub.
+
+
 == Deployment
 
 This is a little checklist for the next release:
