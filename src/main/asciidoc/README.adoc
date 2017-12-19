@@ -11,9 +11,14 @@ Other infos are present in the top link:../README.md[README].
 |server |master |develop |configuration
 
 |https://travis-ci.org/oboehm/jfortune/[Travis-CI.org]
-|https://travis-ci.org/oboehm/jfortune/[image:https://img.shields.io/travis/rust-lang/rust.svg?style=for-the-badge[Travis]]
-|https://travis-ci.org/oboehm/jfortune/branches[image:https://img.shields.io/travis/rust-lang/rust.svg?style=for-the-badge[Travis]]
+|https://travis-ci.org/oboehm/jfortune/branches[image:https://travis-ci.org/oboehm/jfortune.svg?branch=master[Build Status]]
+|https://travis-ci.org/oboehm/jfortune/branches[image:https://travis-ci.org/oboehm/jfortune.svg?branch=develop[Build Status]]
 |s. link:../.travis.yml[.travis.yml]
+
+|https://coveralls.io/github/oboehm/jfortune[CoverAlls.io]
+|https://coveralls.io/github/oboehm/jfortune?branch=master[image:https://coveralls.io/repos/github/oboehm/jfortune/badge.svg?branch=master[Coverage Status]]
+|https://coveralls.io/github/oboehm/jfortune?branch=develop[image:https://coveralls.io/repos/github/oboehm/jfortune/badge.svg?branch=develop[Coverage Status]]
+|`coveralls:report`
 
 |===
 
