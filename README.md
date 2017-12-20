@@ -1,5 +1,7 @@
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.javatux.jfortune/jfortune/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.javatux.jfortune/jfortune)
 [![Build Status](https://travis-ci.org/oboehm/jfortune.svg?branch=develop)](https://travis-ci.org/oboehm/jfortune)
+[![Quality Gate](https://sonarcloud.io/api/badges/gate?key=de.javatux.jfortune:jfortune)](https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune%3Adevelop)
+[![Coverage Status](https://coveralls.io/repos/github/oboehm/jfortune/badge.svg?branch=develop)](https://coveralls.io/github/oboehm/jfortune)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
 
 # jfortune

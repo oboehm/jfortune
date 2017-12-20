@@ -15,6 +15,11 @@ Other infos are present in the top link:../README.md[README].
 |https://travis-ci.org/oboehm/jfortune/branches[image:https://travis-ci.org/oboehm/jfortune.svg?branch=develop[Build Status]]
 |s. link:../.travis.yml[.travis.yml]
 
+|https://sonarcloud.io/projects[sonarcloud.io]
+|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune[image:https://sonarcloud.io/api/badges/gate?key=de.javatux.jfortune:jfortune[Quality Gate]]
+|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune%3Adevelop[image:https://sonarcloud.io/api/badges/gate?key=de.javatux.jfortune:jfachwert:develop[Quality Gate]]
+|`sonar:sonar`
+
 |https://coveralls.io/github/oboehm/jfortune[CoverAlls.io]
 |https://coveralls.io/github/oboehm/jfortune?branch=master[image:https://coveralls.io/repos/github/oboehm/jfortune/badge.svg?branch=master[Coverage Status]]
 |https://coveralls.io/github/oboehm/jfortune?branch=develop[image:https://coveralls.io/repos/github/oboehm/jfortune/badge.svg?branch=develop[Coverage Status]]

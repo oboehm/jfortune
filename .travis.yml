@@ -3,5 +3,22 @@ language: java
 jdk:
   - oraclejdk8
 
+addons:
+  sonarcloud:
+    organization: "oboehm-github"
+    token:
+      secure: "CdxM67ENPpwxgZHTdHS0uxRE/D7pfr12I2V5WiSGbgYxl9fSLyeQHsjJKUkwV0H1gbU6H7m64oGdCs/PZjsxp6nUe8URIU1oNqcq58y3WHc57L/6Fj8BL0Sp1S9u0WES7ik0y7ngA26Q7L7SmHI+/r6URGFrQLRGxPZJc1WHdZLdzYIWUJW2qDWoi6/1GTkGnI+0U6vdblHzWmfSHsek5zA7DKpp1zyQzFraSIatPa4gj2J167XqoS7BSxlqWEHxX3h0j2Kbna3+ZrOTHPTVOdk6K/K3a1kTnqwnsbE799VbxqEO169TOB4U8Q2mGtJpYXovKITsSXY73KGn+R6KgHaItn7DSut0d0++EkAjoB9IJMCOCeTZ/hB5u5WLoyUUGoLJ5bsnJZqNMdWPkhwck5ffKMHFsUqDvDCi8aae5CXuiB7Mi0eV2ZPH05d1DuHvEPPMHL1GBfVEXkaMqx0Liq/Mg5nt3YHoEObydg/Qs/RyjHtHSIsRBGaSUUauad7npRDoHamQP4cF7LTXrMX5ak+EBEbUE1dPVArKuoRkls80RzqL69OhUr/MOEF3qyF1ktxpb2+NfPtDzh5wV8TQjmKCQymCuOxy7oCPazBfzaOuOhUdP7b8aPk+2GApYNHurrk943aaGxldvAMraeOngTT6+HlF3d94Z+JnZ2y5FCg="
+    branches:
+      - master
+      - develop
+
+script:
+  - mvn clean org.jacoco:jacoco-maven-plugin:prepare-agent package sonar:sonar -B
+
 after_success:
   - mvn integration-test jacoco:report coveralls:report
+
+cache:
+  directories:
+    - '$HOME/.m2/repository'
+    - '$HOME/.sonar/cache'
