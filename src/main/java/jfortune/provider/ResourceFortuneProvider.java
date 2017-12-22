@@ -1,8 +1,10 @@
 /*
  * Created on May 16, 2003 by boehm@2xp.de
  */
-package jfortune.server;
+package jfortune.provider;
 
+import jfortune.Fortune;
+import jfortune.FortuneProvider;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
@@ -17,25 +19,33 @@ import java.util.Vector;
 /**
  * @author oliver
  */
-public class FortuneProvider {
+public class ResourceFortuneProvider implements FortuneProvider {
     
     private List sayings = null;
     private Random random = new Random();
-    private static Logger log = Logger.getLogger(FortuneProvider.class);
+    private static Logger log = Logger.getLogger(ResourceFortuneProvider.class);
    
-    public FortuneProvider() {
+    public ResourceFortuneProvider() {
     	this("/fortune/fortunes");
-//    	sayings = new Vector();
-//    	sayings.add("If we were able to understand it, we wouldn't call it code!");
-//    	sayings.add("In C we had to code our own bugs. In C++ we can inherit them. (Prof. Gerald Karam)");
     }
     
-    public FortuneProvider(String resource) {
+    public ResourceFortuneProvider(String resource) {
         try {
             sayings = this.readSayings(resource);
         } catch (IOException ioe) {
             log.warn("can't read " + resource, ioe);
         }
+    }
+
+    /**
+     * Returns random, hopefully interesting, adage.
+     *
+     * @return a fortune
+     * @since 0.5
+     */
+    @Override
+    public Fortune getFortune() {
+        return new Fortune(getSaying());
     }
 
     public String getSaying() {
@@ -62,9 +72,6 @@ public class FortuneProvider {
     	String s;
 		do {
 			s = readSaying(reader);
-//			if (s == null) {
-//				break;
-//			}
 			sayings.add(s);
 		} while (s != null);
         log.info("read: " + sayings.size() + " entries");
@@ -88,7 +95,7 @@ public class FortuneProvider {
     
     public static void main(String[] args) throws InterruptedException {
     	log.setLevel(Level.OFF);
-        FortuneProvider fortuneProvider = new FortuneProvider();
+        ResourceFortuneProvider fortuneProvider = new ResourceFortuneProvider();
         int n = (args.length < 1) ? 1 : Integer.parseInt(args[0]);
         for (int i = 0; i < n; i++) {
         	Thread.sleep(1500);
