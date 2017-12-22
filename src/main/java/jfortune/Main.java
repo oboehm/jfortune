@@ -13,36 +13,35 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * (c)reated 21.12.2017 by oboehm (boehm@javatux.de)
+ * (c)reated 22.12.2017 by oboehm (boehm@javatux.de)
  */
 package jfortune;
 
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
+
 /**
- * This is the representation of a fortune cookie.
+ * This is the main entry point of the application.
  *
  * @author oboehm
- * @since 0.5 (21.12.2017)
+ * @since 0.5 (22.12.2017)
  */
-public final class Fortune {
+public final class Main {
 
-    private final String text;
+    private static Logger LOG = Logger.getLogger(Main.class);
 
-    public Fortune(String text) {
-        this.text = text;
-    }
-
-    public String getText() {
-        return this.text;
+    private Main() {
     }
 
     /**
-     * As String the text will be returned.
+     * Prints a cookie to stdout.
      *
-     * @return the text
+     * @param args will be ignored.
      */
-    @Override
-    public String toString() {
-        return this.getText();
+    public static void main(String[] args)  {
+        LOG.setLevel(Level.OFF);
+        FortuneProvider fortuneProvider = new FortuneProviderFactory().getFortuneProvider();
+        System.out.println(fortuneProvider.getFortune());
     }
 
 }

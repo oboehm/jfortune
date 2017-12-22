@@ -5,7 +5,6 @@ package jfortune.provider;
 
 import jfortune.Fortune;
 import jfortune.FortuneProvider;
-import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
 
 import java.io.BufferedReader;
@@ -23,7 +22,7 @@ public class ResourceFortuneProvider implements FortuneProvider {
     
     private List sayings = null;
     private Random random = new Random();
-    private static Logger log = Logger.getLogger(ResourceFortuneProvider.class);
+    private static final Logger log = Logger.getLogger(ResourceFortuneProvider.class);
    
     public ResourceFortuneProvider() {
     	this("/fortune/fortunes");
@@ -93,14 +92,4 @@ public class ResourceFortuneProvider implements FortuneProvider {
         return saying;
     }
     
-    public static void main(String[] args) throws InterruptedException {
-    	log.setLevel(Level.OFF);
-        ResourceFortuneProvider fortuneProvider = new ResourceFortuneProvider();
-        int n = (args.length < 1) ? 1 : Integer.parseInt(args[0]);
-        for (int i = 0; i < n; i++) {
-        	Thread.sleep(1500);
-            System.out.println(fortuneProvider.getSaying());
-        }
-    }
-
 }
