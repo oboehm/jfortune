@@ -5,7 +5,8 @@ package jfortune.provider;
 
 import jfortune.Fortune;
 import jfortune.FortuneProvider;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,7 +23,7 @@ public class ResourceFortuneProvider implements FortuneProvider {
     
     private List sayings = null;
     private Random random = new Random();
-    private static final Logger log = Logger.getLogger(ResourceFortuneProvider.class);
+    private static final Logger log = LogManager.getLogger(ResourceFortuneProvider.class);
    
     public ResourceFortuneProvider() {
     	this("/fortune/fortunes");
@@ -54,7 +55,6 @@ public class ResourceFortuneProvider implements FortuneProvider {
     
     public String getSaying(int n) {
         String s = (String) sayings.get(n);
-        log.info("get saying " + n + ": " + s.substring(0, 20) + "...");
         return s;
     }
     

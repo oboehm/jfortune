@@ -17,13 +17,17 @@
  */
 package jfortune;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
-import java.io.*;
+import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.io.UnsupportedEncodingException;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.junit.Assert.*;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertThat;
 
 /**
  * Unit tests for {@link Main} class.
@@ -33,7 +37,7 @@ import static org.junit.Assert.*;
  */
 public class MainTest {
 
-    private static Logger LOG = Logger.getLogger(MainTest.class);
+    private static Logger LOG = LogManager.getLogger(MainTest.class);
 
     /**
      * Test method for {@link Main#main(String[])}.

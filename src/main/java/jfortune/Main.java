@@ -17,8 +17,6 @@
  */
 package jfortune;
 
-import org.apache.log4j.Level;
-import org.apache.log4j.Logger;
 
 /**
  * This is the main entry point of the application.
@@ -27,8 +25,6 @@ import org.apache.log4j.Logger;
  * @since 0.5 (22.12.2017)
  */
 public final class Main {
-
-    private static Logger LOG = Logger.getLogger(Main.class);
 
     private Main() {
     }
@@ -39,7 +35,6 @@ public final class Main {
      * @param args will be ignored.
      */
     public static void main(String[] args)  {
-        LOG.setLevel(Level.OFF);
         FortuneProvider fortuneProvider = new FortuneProviderFactory().getFortuneProvider();
         System.out.println(fortuneProvider.getFortune());
     }

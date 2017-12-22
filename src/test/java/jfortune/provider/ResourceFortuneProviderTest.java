@@ -7,7 +7,8 @@
 package jfortune.provider;
 
 import junit.framework.TestCase;
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -16,7 +17,7 @@ import java.io.IOException;
  */
 public class ResourceFortuneProviderTest extends TestCase {
     
-	static private Logger log = Logger.getLogger(ResourceFortuneProviderTest.class);
+	static private Logger log = LogManager.getLogger(ResourceFortuneProviderTest.class);
     static private ResourceFortuneProvider provider = null;
 
     /**
