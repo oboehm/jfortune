@@ -34,6 +34,7 @@ public final class Main {
      *
      * @param args will be ignored.
      */
+    @SuppressWarnings("squid:S106")
     public static void main(String[] args)  {
         FortuneProvider fortuneProvider = new FortuneProviderFactory().getFortuneProvider();
         System.out.println(fortuneProvider.getFortune());

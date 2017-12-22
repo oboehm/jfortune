@@ -6,8 +6,8 @@
     </Console>
   </Appenders>
   <Loggers>
-    <Logger name="jfortune" level="INFO" />
-    <Root level="WARN">
+    <Logger name="jfortune" level="DEBUG"/>
+    <Root level="INFO">
       <AppenderRef ref="CONSOLE" />
     </Root>
   </Loggers>

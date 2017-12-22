@@ -6,51 +6,46 @@
  */
 package jfortune.provider;
 
-import junit.framework.TestCase;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.junit.Test;
 
 import java.io.IOException;
+
+import static org.junit.Assert.assertTrue;
 
 /**
  * @author oliver
  */
-public class ResourceFortuneProviderTest extends TestCase {
+public class ResourceFortuneProviderTest {
     
-	static private Logger log = LogManager.getLogger(ResourceFortuneProviderTest.class);
-    static private ResourceFortuneProvider provider = null;
+	private static final Logger LOG = LogManager.getLogger(ResourceFortuneProviderTest.class);
+    private static final ResourceFortuneProvider provider = new ResourceFortuneProvider();
 
-    /**
-     * This method is called before every test.
-     * @see TestCase#setUp()
-     */
-    public void setUp() {
-        if (provider == null) {
-            provider = new ResourceFortuneProvider();
-        }
-    }
-    
+    @Test
     public void testInitFortuneProvider() {
         assertTrue("to less fortunes", provider.getNumberOfSayings() > 0);
     }
-    
+
+    @Test
     public void testFortuneProvider() throws IOException {
         String s = provider.getSaying(0);
         assertTrue("string too short", s.length() > 1);
         s = provider.getSaying(2);
         assertTrue("string too short", s.length() > 1);
     }
-    
+
+    @Test
     public void testFortuneProviderString() throws IOException {
     	ResourceFortuneProvider fortunes = new ResourceFortuneProvider("/fortune/fortunes");
     	String s = fortunes.getSaying(10);
-    	log.debug(s);
+    	LOG.debug(s);
     }
     
     public void donttestFortuneProviderNull() throws IOException {
     	ResourceFortuneProvider fortunes = new ResourceFortuneProvider(null);
     	String s = fortunes.getSaying();
-    	log.debug(s);
+    	LOG.debug(s);
     }
 
 }
