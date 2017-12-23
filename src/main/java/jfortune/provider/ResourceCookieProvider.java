@@ -3,8 +3,8 @@
  */
 package jfortune.provider;
 
-import jfortune.Fortune;
-import jfortune.FortuneProvider;
+import jfortune.Cookie;
+import jfortune.CookieProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -20,17 +20,17 @@ import java.util.Random;
 /**
  * @author oliver
  */
-public class ResourceFortuneProvider implements FortuneProvider {
+public class ResourceCookieProvider implements CookieProvider {
 
-    private static final Logger LOG = LogManager.getLogger(ResourceFortuneProvider.class);
+    private static final Logger LOG = LogManager.getLogger(ResourceCookieProvider.class);
     private final List<String> sayings = new ArrayList<>();
     private Random random = new Random();
 
-    public ResourceFortuneProvider() {
+    public ResourceCookieProvider() {
     	this("/fortunes/fortunes");
     }
     
-    public ResourceFortuneProvider(String resource) {
+    public ResourceCookieProvider(String resource) {
         try {
             readSayings(resource, sayings);
         } catch (IOException ioe) {
@@ -45,8 +45,8 @@ public class ResourceFortuneProvider implements FortuneProvider {
      * @since 0.5
      */
     @Override
-    public Fortune getFortune() {
-        return new Fortune(getSaying());
+    public Cookie getFortune() {
+        return new Cookie(getSaying());
     }
 
     public String getSaying() {
@@ -64,7 +64,7 @@ public class ResourceFortuneProvider implements FortuneProvider {
     
     private void readSayings(String from, List<String> sayings) throws IOException {
         LOG.debug("Reading fortunes from {}...", from);
-        try (InputStream istream = ResourceFortuneProvider.class.getResourceAsStream(from);
+        try (InputStream istream = ResourceCookieProvider.class.getResourceAsStream(from);
                 BufferedReader reader = new BufferedReader(new InputStreamReader(istream))) {
             String s = readSaying(reader);
             while (StringUtils.isNotBlank(s)) {

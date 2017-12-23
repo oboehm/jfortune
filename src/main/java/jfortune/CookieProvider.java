@@ -18,18 +18,18 @@
 package jfortune;
 
 /**
- * Interface FortuneProvider.
+ * Interface CookieProvider.
  *
  * @author oboehm
  * @since 0.5 (21.12.2017)
  */
-public interface FortuneProvider {
+public interface CookieProvider {
 
     /**
-     * The only thing a FortuneProvider should provide is a fortune.
+     * The only thing a CookieProvider should provide is a fortune.
      *
      * @return a fortune cookie
      */
-    Fortune getFortune();
+    Cookie getFortune();
 
 }

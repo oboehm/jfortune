@@ -13,36 +13,41 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * (c)reated 21.12.2017 by oboehm (boehm@javatux.de)
+ * (c)reated 22.12.2017 by oboehm (boehm@javatux.de)
  */
 package jfortune;
 
+
+import jfortune.provider.ResourceCookieProvider;
+
 /**
- * This is the representation of a fortune cookie.
+ * This is the main entry point of the application.
  *
  * @author oboehm
- * @since 0.5 (21.12.2017)
+ * @since 0.5 (22.12.2017)
  */
 public final class Fortune {
 
-    private final String text;
+    private final CookieProvider provider = new ResourceCookieProvider();
 
-    public Fortune(String text) {
-        this.text = text;
-    }
-
-    public String getText() {
-        return this.text;
+    /**
+     * Prints a cookie to stdout.
+     *
+     * @param args will be ignored.
+     */
+    @SuppressWarnings("squid:S106")
+    public static void main(String[] args)  {
+        CookieProvider cookieProvider = new Fortune().getCookieProvider();
+        System.out.println(cookieProvider.getFortune());
     }
 
     /**
-     * As String the text will be returned.
+     * Returns a default or configured {@link CookieProvider}.
      *
-     * @return the text
+     * @return the default provider
      */
-    @Override
-    public String toString() {
-        return this.getText();
+    public CookieProvider getCookieProvider() {
+        return provider;
     }
 
 }

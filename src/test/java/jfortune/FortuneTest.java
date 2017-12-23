@@ -27,20 +27,22 @@ import java.io.UnsupportedEncodingException;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
 /**
- * Unit tests for {@link Main} class.
+ * Unit tests for {@link Fortune} class.
  *
  * @author oboehm
  * @since 0.5 (22.12.2017)
  */
-public class MainTest {
+public class FortuneTest {
 
-    private static Logger LOG = LogManager.getLogger(MainTest.class);
+    private static Logger LOG = LogManager.getLogger(FortuneTest.class);
+    private final Fortune fortune = new Fortune();
 
     /**
-     * Test method for {@link Main#main(String[])}.
+     * Test method for {@link Fortune#main(String[])}.
      *
      * @throws UnsupportedEncodingException the unsupported encoding exception
      */
@@ -50,13 +52,21 @@ public class MainTest {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         System.setOut(new PrintStream(buffer));
         try {
-            Main.main(new String[0]);
+            Fortune.main(new String[0]);
             String fortune = buffer.toString("UTF-8");
             LOG.info(fortune);
             assertThat(fortune, is(notNullValue()));
         } finally {
             System.setOut(stdout);
         }
+    }
+    /**
+     * Test method for {@link Fortune#getCookieProvider()}.
+     */
+    @Test
+    public void getFortuneProvider() {
+        CookieProvider provider = fortune.getCookieProvider();
+        assertNotNull(provider);
     }
 
 }

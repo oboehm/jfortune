@@ -13,31 +13,36 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * (c)reated 22.12.2017 by oboehm (boehm@javatux.de)
+ * (c)reated 21.12.2017 by oboehm (boehm@javatux.de)
  */
 package jfortune;
 
-import org.junit.Test;
-
-import static org.junit.Assert.assertNotNull;
-
 /**
- * Unit tests {@link FortuneProviderFactory} class.
+ * This is the representation of a fortune cookie.
  *
  * @author oboehm
- * @since 0.5 (22.12.2017)
+ * @since 0.5 (21.12.2017)
  */
-public class FortuneProviderFactoryTest {
+public final class Cookie {
 
-    private final FortuneProviderFactory factory = new FortuneProviderFactory();
+    private final String text;
+
+    public Cookie(String text) {
+        this.text = text;
+    }
+
+    public String getText() {
+        return this.text;
+    }
 
     /**
-     * Test method for {@link FortuneProviderFactory#getFortuneProvider()}.
+     * As String the text will be returned.
+     *
+     * @return the text
      */
-    @Test
-    public void getFortuneProvider() {
-        FortuneProvider provider = factory.getFortuneProvider();
-        assertNotNull(provider);
+    @Override
+    public String toString() {
+        return this.getText();
     }
 
 }

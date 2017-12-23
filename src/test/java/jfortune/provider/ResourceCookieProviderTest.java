@@ -17,10 +17,10 @@ import static org.junit.Assert.assertTrue;
 /**
  * @author oliver
  */
-public class ResourceFortuneProviderTest {
+public class ResourceCookieProviderTest {
     
-	private static final Logger LOG = LogManager.getLogger(ResourceFortuneProviderTest.class);
-    private static final ResourceFortuneProvider provider = new ResourceFortuneProvider();
+	private static final Logger LOG = LogManager.getLogger(ResourceCookieProviderTest.class);
+    private static final ResourceCookieProvider provider = new ResourceCookieProvider();
 
     @Test
     public void testInitFortuneProvider() {
@@ -37,13 +37,13 @@ public class ResourceFortuneProviderTest {
 
     @Test
     public void testFortuneProviderString() throws IOException {
-    	ResourceFortuneProvider fortunes = new ResourceFortuneProvider();
+    	ResourceCookieProvider fortunes = new ResourceCookieProvider();
     	String s = fortunes.getSaying(10);
     	LOG.debug(s);
     }
     
     public void donttestFortuneProviderNull() throws IOException {
-    	ResourceFortuneProvider fortunes = new ResourceFortuneProvider(null);
+    	ResourceCookieProvider fortunes = new ResourceCookieProvider(null);
     	String s = fortunes.getSaying();
     	LOG.debug(s);
     }
