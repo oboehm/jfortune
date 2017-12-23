@@ -42,6 +42,16 @@ public class FortuneTest {
     private final Fortune fortune = new Fortune();
 
     /**
+     * Test method for {@link Fortune#getCookie()}.
+     */
+    @Test
+    public void getFortuneProvider() {
+        Cookie cookie = fortune.getCookie();
+        assertNotNull(cookie);
+        LOG.info(cookie);
+    }
+
+    /**
      * Test method for {@link Fortune#main(String[])}.
      *
      * @throws UnsupportedEncodingException the unsupported encoding exception
@@ -59,14 +69,6 @@ public class FortuneTest {
         } finally {
             System.setOut(stdout);
         }
-    }
-    /**
-     * Test method for {@link Fortune#getCookieProvider()}.
-     */
-    @Test
-    public void getFortuneProvider() {
-        CookieProvider provider = fortune.getCookieProvider();
-        assertNotNull(provider);
     }
 
 }

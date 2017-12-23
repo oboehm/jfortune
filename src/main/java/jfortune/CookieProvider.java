@@ -30,6 +30,6 @@ public interface CookieProvider {
      *
      * @return a fortune cookie
      */
-    Cookie getFortune();
+    Cookie getCookie();
 
 }

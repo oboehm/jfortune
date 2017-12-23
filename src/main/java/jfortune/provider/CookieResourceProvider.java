@@ -13,6 +13,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -20,17 +21,17 @@ import java.util.Random;
 /**
  * @author oliver
  */
-public class ResourceCookieProvider implements CookieProvider {
+public class CookieResourceProvider implements CookieProvider {
 
-    private static final Logger LOG = LogManager.getLogger(ResourceCookieProvider.class);
+    private static final Logger LOG = LogManager.getLogger(CookieResourceProvider.class);
     private final List<String> sayings = new ArrayList<>();
     private Random random = new Random();
 
-    public ResourceCookieProvider() {
+    public CookieResourceProvider() {
     	this("/fortunes/fortunes");
     }
     
-    public ResourceCookieProvider(String resource) {
+    public CookieResourceProvider(String resource) {
         try {
             readSayings(resource, sayings);
         } catch (IOException ioe) {
@@ -45,7 +46,7 @@ public class ResourceCookieProvider implements CookieProvider {
      * @since 0.5
      */
     @Override
-    public Cookie getFortune() {
+    public Cookie getCookie() {
         return new Cookie(getSaying());
     }
 
@@ -64,8 +65,8 @@ public class ResourceCookieProvider implements CookieProvider {
     
     private void readSayings(String from, List<String> sayings) throws IOException {
         LOG.debug("Reading fortunes from {}...", from);
-        try (InputStream istream = ResourceCookieProvider.class.getResourceAsStream(from);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(istream))) {
+        try (InputStream istream = CookieResourceProvider.class.getResourceAsStream(from);
+                BufferedReader reader = new BufferedReader(new InputStreamReader(istream, StandardCharsets.UTF_8))) {
             String s = readSaying(reader);
             while (StringUtils.isNotBlank(s)) {
                 sayings.add(s);

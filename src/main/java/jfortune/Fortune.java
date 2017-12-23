@@ -18,7 +18,7 @@
 package jfortune;
 
 
-import jfortune.provider.ResourceCookieProvider;
+import jfortune.provider.CookieResourceProvider;
 
 /**
  * This is the main entry point of the application.
@@ -28,7 +28,16 @@ import jfortune.provider.ResourceCookieProvider;
  */
 public final class Fortune {
 
-    private final CookieProvider provider = new ResourceCookieProvider();
+    private final CookieProvider provider = new CookieResourceProvider();
+
+    /**
+     * It generates a random epigram.
+     *
+     * @return a random cookie
+     */
+    public Cookie getCookie() {
+        return provider.getCookie();
+    }
 
     /**
      * Prints a cookie to stdout.
@@ -37,17 +46,7 @@ public final class Fortune {
      */
     @SuppressWarnings("squid:S106")
     public static void main(String[] args)  {
-        CookieProvider cookieProvider = new Fortune().getCookieProvider();
-        System.out.println(cookieProvider.getFortune());
-    }
-
-    /**
-     * Returns a default or configured {@link CookieProvider}.
-     *
-     * @return the default provider
-     */
-    public CookieProvider getCookieProvider() {
-        return provider;
+        System.out.println(new Fortune().getCookie());
     }
 
 }
