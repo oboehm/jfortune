@@ -13,32 +13,26 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  *
- * (c)reated 21.12.2017 by oboehm (ob@oasd.de)
+ * (c)reated 23.12.2017 by oboehm (boehm@javatux.de)
  */
 package jfortune;
 
+import org.junit.Test;
+import patterntesting.runtime.junit.ObjectTester;
+
 /**
- * Interface CookieProvider.
+ * Unit-Tests fuer {@link Cookie}-Klasse.
  *
  * @author oboehm
- * @since 0.5 (21.12.2017)
+ * @since 0.5 (23.12.2017)
  */
-public interface CookieProvider {
+public final class CookieTest {
 
-    /**
-     * The only thing a CookieProvider should provide is a fortune.
-     *
-     * @return a fortune cookie
-     */
-    Cookie getCookie();
-
-    /**
-     * Returns a cookie which belongs the given random. I.e. the next call
-     * with the same random value will return the same cookie.
-     *
-     * @param random whole range of 'int' is allowed as value
-     * @return a cookie
-     */
-    Cookie getCookie(int random);
+    @Test
+    public void testEquals() {
+        Cookie one = new Cookie("one");
+        Cookie anotherOne = new Cookie("one");
+        ObjectTester.assertEquals(one, anotherOne);
+    }
 
 }

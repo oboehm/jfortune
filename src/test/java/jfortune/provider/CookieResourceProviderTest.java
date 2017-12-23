@@ -6,12 +6,14 @@
  */
 package jfortune.provider;
 
+import jfortune.Cookie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.anyOf;
 import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.assertTrue;
 
@@ -53,6 +55,18 @@ public class CookieResourceProviderTest {
         String cookie = provider.getCookie().getText().trim();
         assertThat(cookie, anyOf(equalTo("R\u00fcckvergr\u00f6\u00dferungsger\u00e4t"),
                 equalTo("TR\u00c4NEN\u00dcBERSTR\u00d6MT")));
+    }
+
+    /**
+     * Two cookies received with the same (random) number should be equals.
+     */
+    @Test
+    public void testGetCookie() {
+        int n = (int) System.currentTimeMillis();
+        Cookie one = provider.getCookie(n);
+        Cookie two = provider.getCookie(n);
+        assertEquals(one, two);
+        LOG.info(one);
     }
 
 }

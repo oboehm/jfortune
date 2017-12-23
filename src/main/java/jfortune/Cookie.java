@@ -17,13 +17,16 @@
  */
 package jfortune;
 
+import java.io.Serializable;
+import java.util.Objects;
+
 /**
  * This is the representation of a fortune cookie.
  *
  * @author oboehm
  * @since 0.5 (21.12.2017)
  */
-public final class Cookie {
+public final class Cookie implements Serializable {
 
     private final String text;
 
@@ -33,6 +36,20 @@ public final class Cookie {
 
     public String getText() {
         return this.text;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Cookie)) {
+            return false;
+        }
+        Cookie other = (Cookie) obj;
+        return Objects.equals(getText(), other.getText());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getText());
     }
 
     /**
