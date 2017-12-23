@@ -63,12 +63,7 @@ public class CookieResourceProvider implements CookieProvider {
         return new Cookie(getSaying(n));
     }
 
-    public String getSaying() {
-        int n = random.nextInt(this.getNumberOfSayings());
-        return getSaying(n);
-    }
-    
-    public String getSaying(int n) {
+    private String getSaying(int n) {
         return sayings.get(n);
     }
     

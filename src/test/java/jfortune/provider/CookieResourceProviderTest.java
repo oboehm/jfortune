@@ -11,11 +11,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.anyOf;
-import static org.hamcrest.CoreMatchers.equalTo;
+import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.greaterThan;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.assertTrue;
 
 /**
  * @author oliver
@@ -27,22 +26,7 @@ public class CookieResourceProviderTest {
 
     @Test
     public void testInitFortuneProvider() {
-        assertTrue("to less fortunes", provider.getNumberOfSayings() > 0);
-    }
-
-    @Test
-    public void testFortuneProvider() {
-        String s = provider.getSaying(0);
-        assertTrue("string too short", s.length() > 1);
-        s = provider.getSaying(2);
-        assertTrue("string too short", s.length() > 1);
-    }
-
-    @Test
-    public void testFortuneProviderString() {
-    	CookieResourceProvider fortunes = new CookieResourceProvider();
-    	String s = fortunes.getSaying(10);
-    	LOG.debug(s);
+        assertThat(provider.getNumberOfSayings(), is(greaterThan(1)));
     }
 
     /**
