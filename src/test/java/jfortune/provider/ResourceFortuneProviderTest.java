@@ -37,7 +37,7 @@ public class ResourceFortuneProviderTest {
 
     @Test
     public void testFortuneProviderString() throws IOException {
-    	ResourceFortuneProvider fortunes = new ResourceFortuneProvider("/fortune/fortunes");
+    	ResourceFortuneProvider fortunes = new ResourceFortuneProvider();
     	String s = fortunes.getSaying(10);
     	LOG.debug(s);
     }

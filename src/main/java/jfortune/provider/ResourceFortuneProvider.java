@@ -27,7 +27,7 @@ public class ResourceFortuneProvider implements FortuneProvider {
     private Random random = new Random();
 
     public ResourceFortuneProvider() {
-    	this("/fortune/fortunes");
+    	this("/fortunes/fortunes");
     }
     
     public ResourceFortuneProvider(String resource) {
