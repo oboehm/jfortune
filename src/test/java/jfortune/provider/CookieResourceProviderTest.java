@@ -25,7 +25,7 @@ public class CookieResourceProviderTest {
     private static final CookieResourceProvider provider = new CookieResourceProvider();
 
     @Test
-    public void testInitFortuneProvider() {
+    public void testInit() {
         assertThat(provider.getNumberOfSayings(), is(greaterThan(1)));
     }
 
@@ -35,7 +35,7 @@ public class CookieResourceProviderTest {
      */
     @Test
     public void testUmlaute() {
-        CookieResourceProvider provider = new CookieResourceProvider("umlaut");
+        CookieResourceProvider provider = new CookieResourceProvider("test/umlaut");
         String cookie = provider.getCookie().getText().trim();
         assertThat(cookie, anyOf(equalTo("R\u00fcckvergr\u00f6\u00dferungsger\u00e4t"),
                 equalTo("TR\u00c4NEN\u00dcBERSTR\u00d6MT")));
@@ -51,6 +51,15 @@ public class CookieResourceProviderTest {
         Cookie two = provider.getCookie(n);
         assertEquals(one, two);
         LOG.info(one);
+    }
+
+    /**
+     * Test method for {@link CookieResourceProvider#CookieResourceProvider(String)}.
+     */
+    @Test
+    public void testCookieResourceProviderString() {
+        CookieResourceProvider literature = new CookieResourceProvider("literature");
+        assertThat(literature.getNumberOfSayings(), is(greaterThan(1)));
     }
 
 }

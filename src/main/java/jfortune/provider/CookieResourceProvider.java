@@ -27,15 +27,23 @@ public class CookieResourceProvider implements CookieProvider {
     private final List<String> sayings = new ArrayList<>();
     private Random random = new Random();
 
+    /**
+     * Default constructor for default cookies.
+     */
     public CookieResourceProvider() {
-    	this("/fortunes/fortunes");
+    	this("fortunes");
     }
-    
-    public CookieResourceProvider(String resource) {
+
+    /**
+     * Instantiates the class with the given name.
+     *
+     * @param name name of the resource, e.g. "fortunes"
+     */
+    public CookieResourceProvider(String name) {
         try {
-            readSayings(resource, sayings);
+            readSayings("/fortunes/" + name, sayings);
         } catch (IOException ioe) {
-            LOG.warn("can't read " + resource, ioe);
+            throw new IllegalArgumentException("cannot read resource '" + name + "'", ioe);
         }
     }
 
@@ -73,8 +81,11 @@ public class CookieResourceProvider implements CookieProvider {
     
     private void readSayings(String from, List<String> sayings) throws IOException {
         LOG.debug("Reading fortunes from {}...", from);
-        try (InputStream istream = CookieResourceProvider.class.getResourceAsStream(from);
-                BufferedReader reader = new BufferedReader(new InputStreamReader(istream, StandardCharsets.UTF_8))) {
+        try (InputStream istream = CookieResourceProvider.class.getResourceAsStream(from)) {
+            if (istream == null) {
+                throw new IOException("resource '" + from + "' not found");
+            }
+            BufferedReader reader = new BufferedReader(new InputStreamReader(istream, StandardCharsets.UTF_8));
             String s = readSaying(reader);
             while (StringUtils.isNotBlank(s)) {
                 sayings.add(s);

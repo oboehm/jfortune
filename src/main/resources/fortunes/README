@@ -1,0 +1,6 @@
+The fortune files in this directory are normally part of a Linux distribution.
+They are bundled together with the class files because they normally not
+present on the system.
+
+Also not all data files are embedded. For a list of other files have a look at
+https://github.com/shlomif/fortune-mod
