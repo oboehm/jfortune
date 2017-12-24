@@ -38,13 +38,7 @@ public class CookieResourceProvider implements CookieProvider {
      * @param name name of the resource, e.g. "fortunes"
      */
     public CookieResourceProvider(String name) {
-        try {
-            List<String> sayings = new ArrayList<>();
-            readSayings("/fortunes/" + name, sayings);
-            cookies.put(name, sayings);
-        } catch (IOException ioe) {
-            throw new IllegalArgumentException("cannot read resource '" + name + "'", ioe);
-        }
+        cookies.put(name, readSayings(name));
     }
 
     /**
@@ -54,7 +48,12 @@ public class CookieResourceProvider implements CookieProvider {
      * @param names name of the cookie resources
      */
     public void setSources(String... names) {
-        throw new UnsupportedOperationException("not yet implemented");
+        for (String name : names) {
+            List<String> sayings = cookies.get(name);
+            if (sayings == null) {
+                cookies.put(name, readSayings(name));
+            }
+        }
     }
 
     /**
@@ -98,7 +97,9 @@ public class CookieResourceProvider implements CookieProvider {
         return sayings;
     }
     
-    private void readSayings(String from, List<String> sayings) throws IOException {
+    private List<String> readSayings(String name) {
+        String from = "/fortunes/" + name;
+        List<String> sayings = new ArrayList<>();
         LOG.debug("Reading fortunes from {}...", from);
         try (InputStream istream = CookieResourceProvider.class.getResourceAsStream(from)) {
             if (istream == null) {
@@ -110,8 +111,11 @@ public class CookieResourceProvider implements CookieProvider {
                 sayings.add(s);
                 s = readSaying(reader);
             }
+        } catch (IOException ioe) {
+            throw new IllegalArgumentException("cannot reed cookies from " + from);
         }
         LOG.debug("Reading fortunes from {} finished with {} entries.", from, sayings.size());
+        return sayings;
     }
     
     private static String readSaying(BufferedReader reader) throws IOException {
