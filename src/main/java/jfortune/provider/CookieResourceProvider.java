@@ -14,9 +14,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
+import java.util.*;
 
 /**
  * @author oliver
@@ -24,7 +22,7 @@ import java.util.Random;
 public class CookieResourceProvider implements CookieProvider {
 
     private static final Logger LOG = LogManager.getLogger(CookieResourceProvider.class);
-    private final List<String> sayings = new ArrayList<>();
+    private final Map<String, List<String>> cookies = new HashMap<>();
     private Random random = new Random();
 
     /**
@@ -41,10 +39,22 @@ public class CookieResourceProvider implements CookieProvider {
      */
     public CookieResourceProvider(String name) {
         try {
+            List<String> sayings = new ArrayList<>();
             readSayings("/fortunes/" + name, sayings);
+            cookies.put(name, sayings);
         } catch (IOException ioe) {
             throw new IllegalArgumentException("cannot read resource '" + name + "'", ioe);
         }
+    }
+
+    /**
+     * The sources you can set is a list of resources. These resources contains
+     * the sources for the cookies.
+     *
+     * @param names name of the cookie resources
+     */
+    public void setSources(String... names) {
+        throw new UnsupportedOperationException("not yet implemented");
     }
 
     /**
@@ -72,11 +82,20 @@ public class CookieResourceProvider implements CookieProvider {
     }
 
     private String getSaying(int n) {
-        return sayings.get(n);
+        return getSayings().get(n);
     }
     
     public int getNumberOfSayings() {
-        return sayings.size();
+        return getSayings().size();
+    }
+
+    private List<String> getSayings() {
+        List<String> sayings = new ArrayList<>();
+        Set<Map.Entry<String, List<String>>> entries = cookies.entrySet();
+        for (List<String> cookieList : cookies.values()) {
+            sayings.addAll(cookieList);
+        }
+        return sayings;
     }
     
     private void readSayings(String from, List<String> sayings) throws IOException {

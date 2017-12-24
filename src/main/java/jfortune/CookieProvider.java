@@ -41,4 +41,13 @@ public interface CookieProvider {
      */
     Cookie getCookie(int random);
 
+    /**
+     * Set the sources where the cookie provider should read its cookies,
+     * This can be a list of resources, a list of files or list of URLs,
+     * depending on the provider.
+     *
+     * @param names list of names
+     */
+    void setSources(String... names);
+
 }
