@@ -42,13 +42,23 @@ public class FortuneTest {
     private final Fortune fortune = new Fortune();
 
     /**
-     * Test method for {@link Fortune#getCookie()}.
+     * Test method for {@link Fortune#getCookie(String...)}.
      */
     @Test
-    public void getFortuneProvider() {
+    public void getCookieDefault() {
         Cookie cookie = fortune.getCookie();
         assertNotNull(cookie);
         LOG.info(cookie);
+    }
+
+    /**
+     * Test method for {@link Fortune#getCookie(String...)} with one name
+     * for a CookieProvider.
+     */
+    @Test
+    public void getCookieLiterature() {
+        Cookie cookie = fortune.getCookie("literature");
+        assertThat(cookie, is(notNullValue()));
     }
 
     /**

@@ -20,6 +20,9 @@ package jfortune;
 
 import jfortune.provider.CookieResourceProvider;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * This is the main entry point of the application.
  *
@@ -28,15 +31,37 @@ import jfortune.provider.CookieResourceProvider;
  */
 public final class Fortune {
 
-    private final CookieProvider provider = new CookieResourceProvider();
+    private final Map<String, CookieProvider> providers = new HashMap<>();
+
+    /**
+     * Default constructor.
+     */
+    public Fortune() {
+        providers.put("fortunes", new CookieResourceProvider("fortunes"));
+    }
 
     /**
      * It generates a random epigram.
      *
      * @return a random cookie
      */
-    public Cookie getCookie() {
-        return provider.getCookie();
+    public Cookie getCookie(String ... names) {
+        if (names.length == 0) {
+            return providers.get("fortunes").getCookie();
+        }
+        if (names.length > 1) {
+            throw new UnsupportedOperationException(names.length + " names not yet supported");
+        }
+        return getCookieProvider(names[0]).getCookie();
+    }
+
+    private CookieProvider getCookieProvider(String name) {
+        CookieProvider p = providers.get(name);
+        if (p == null) {
+            p = new CookieResourceProvider(name);
+            providers.put(name, p);
+        }
+        return p;
     }
 
     /**
