@@ -13,6 +13,7 @@ import org.junit.Test;
 
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.greaterThan;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -55,13 +56,22 @@ public class CookieResourceProviderTest {
     }
 
     /**
-     * Test metod for {@link CookieResourceProvider#getShortCookie()}.
+     * Test method for {@link CookieResourceProvider#getShortCookie()}.
      */
     @Test
     public void testGetShortCookie() {
         Cookie cookie = provider.getShortCookie();
         LOG.info(cookie);
         assertThat(cookie.length(), lessThanOrEqualTo(provider.getShortLength()));
+    }
+
+    /**
+     * Test method for {@link CookieResourceProvider#getLongCookie()}.
+     */
+    @Test
+    public void testGetLongCookie() {
+        Cookie cookie = provider.getLongCookie();
+        assertThat(cookie.length(), greaterThanOrEqualTo(provider.getShortLength()));
     }
 
     /**

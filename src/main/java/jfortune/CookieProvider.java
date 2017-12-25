@@ -49,6 +49,22 @@ public interface CookieProvider {
     }
 
     /**
+     * Long cookies has a length of more than 160 characters. If you wants
+     * another minimal length for short cookies use
+     * {@link #setShortLength(int)} to set it.
+     *
+     * @return a cookie more than 160 characters
+     */
+    default Cookie getLongCookie() {
+        Cookie cookie = getCookie();
+        if (cookie.length() >= getShortLength()) {
+            return cookie;
+        } else {
+            return getLongCookie();
+        }
+    }
+
+    /**
      * Returns a cookie which belongs the given random. I.e. the next call
      * with the same random value will return the same cookie.
      *
