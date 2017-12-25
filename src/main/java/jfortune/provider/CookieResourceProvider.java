@@ -48,11 +48,27 @@ public class CookieResourceProvider implements CookieProvider {
      * @param names name of the cookie resources
      */
     public void setSources(String... names) {
+        if (names.length == 0) {
+            return;
+        }
+        addNewSources(names);
+        removeOldSources(names);
+    }
+
+    private void addNewSources(String[] names) {
         for (String name : names) {
             List<String> sayings = cookies.get(name);
             if (sayings == null) {
                 cookies.put(name, readSayings(name));
             }
+        }
+    }
+
+    private void removeOldSources(String[] names) {
+        Set<String> keys = new HashSet<>(cookies.keySet());
+        keys.removeAll(Arrays.asList(names));
+        for (String name : keys) {
+            cookies.remove(name);
         }
     }
 
