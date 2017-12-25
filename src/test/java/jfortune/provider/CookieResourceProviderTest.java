@@ -28,7 +28,7 @@ public class CookieResourceProviderTest {
 
     @Test
     public void testInit() {
-        assertThat(provider.getNumberOfSayings(), is(greaterThan(1)));
+        assertThat(provider.getNumberOfCookies(), is(greaterThan(1)));
     }
 
     /**
@@ -52,7 +52,6 @@ public class CookieResourceProviderTest {
         Cookie one = provider.getCookie(n);
         Cookie two = provider.getCookie(n);
         assertEquals(one, two);
-        LOG.info(one);
     }
 
     /**
@@ -75,12 +74,35 @@ public class CookieResourceProviderTest {
     }
 
     /**
+     * Test method for {@link CookieResourceProvider#getShortCookie(int)}.
+     */
+    @Test
+    public void testGetShortCookieInt() {
+        int n = (int) System.currentTimeMillis();
+        Cookie one = provider.getShortCookie(n);
+        Cookie two = provider.getShortCookie(n);
+        assertEquals(one, two);
+        LOG.info(one);
+    }
+
+    /**
+     * Test method for {@link CookieResourceProvider#getLongCookie(int)}.
+     */
+    @Test
+    public void testGetLongCookieInt() {
+        int n = (int) System.currentTimeMillis();
+        Cookie one = provider.getLongCookie(n);
+        Cookie two = provider.getLongCookie(n);
+        assertEquals(one, two);
+    }
+
+    /**
      * Test method for {@link CookieResourceProvider#CookieResourceProvider(String)}.
      */
     @Test
     public void testCookieResourceProviderString() {
         CookieResourceProvider literature = new CookieResourceProvider("literature");
-        assertThat(literature.getNumberOfSayings(), is(greaterThan(1)));
+        assertThat(literature.getNumberOfCookies(), is(greaterThan(1)));
     }
 
 }

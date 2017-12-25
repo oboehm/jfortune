@@ -65,13 +65,31 @@ public interface CookieProvider {
     }
 
     /**
-     * Returns a cookie which belongs the given random. I.e. the next call
+     * Returns a cookie which belongs to the given random. I.e. the next call
      * with the same random value will return the same cookie.
      *
      * @param random whole range of 'int' is allowed as value
      * @return a cookie
      */
     Cookie getCookie(int random);
+
+    /**
+     * Returns a short cookie which belongs to the given random. I.e. the next
+     * call to this method will return the same short cookie.
+     *
+     * @param random whole range of 'int' is allowed as value
+     * @return a cookie
+     */
+    Cookie getShortCookie(int random);
+
+    /**
+     * Returns a long cookie which belongs to the given random. I.e. the next
+     * call to this method will return the same long cookie.
+     *
+     * @param random whole range of 'int' is allowed as value
+     * @return a cookie
+     */
+    Cookie getLongCookie(int random);
 
     /**
      * Set the longest fortune length (in characters) considered to be "short"
