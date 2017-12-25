@@ -33,6 +33,22 @@ public interface CookieProvider {
     Cookie getCookie();
 
     /**
+     * Short cookies has a length of maxmimal 160 characters. If you wants
+     * another maximal length for short cookies use
+     * {@link #setShortLength(int)} to set it.
+     *
+     * @return a cookie of maximal 160 characters
+     */
+    default Cookie getShortCookie() {
+        Cookie cookie = getCookie();
+        if (cookie.length() <= getShortLength()) {
+            return cookie;
+        } else {
+            return getShortCookie();
+        }
+    }
+
+    /**
      * Returns a cookie which belongs the given random. I.e. the next call
      * with the same random value will return the same cookie.
      *
@@ -40,6 +56,25 @@ public interface CookieProvider {
      * @return a cookie
      */
     Cookie getCookie(int random);
+
+    /**
+     * Set the longest fortune length (in characters) considered to be "short"
+     * (the default is 160). All fortunes longer than this are considered "long".
+     *
+     * @param n length
+     */
+    default void setShortLength(int n) {
+        throw new UnsupportedOperationException("not yet implemented");
+    }
+
+    /**
+     * Gets the length of fortune length considered to be "short":
+     *
+     * @return length in characters (default is 160)
+     */
+    default int getShortLength() {
+        return 160;
+    }
 
     /**
      * Set the sources where the cookie provider should read its cookies,

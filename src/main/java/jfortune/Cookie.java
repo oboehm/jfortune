@@ -34,8 +34,22 @@ public final class Cookie implements Serializable {
         this.text = text;
     }
 
+    /**
+     * Get the text of the cookie.
+     *
+     * @return text (can contain newlines)
+     */
     public String getText() {
         return this.text;
+    }
+
+    /**
+     * Returns the length of the cookie.
+     *
+     * @return length
+     */
+    public int length() {
+        return this.text.length();
     }
 
     @Override
