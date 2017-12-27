@@ -11,8 +11,13 @@ The first version appears 1979 in [Unix Version 7](https://en.wikipedia.org/wiki
 `jfortune` is a rewrite of the program in Java which can be defined as dependency for your own Java application.
 
 The first version of `jfortune` was written in 2003 with Java 1.4, JUnit 3 and [Ant](http://ant.apache.org/).
-It is now digged out, put on GitHub and will be delivered to the Central Maven Repo ([OSSRH-36625](https://issues.sonatype.org/browse/OSSRH-36625)).
+It is now digged out, put on GitHub and delivered to the Central Maven Repo ([OSSRH-36625](https://issues.sonatype.org/browse/OSSRH-36625)).
 Later it will be reworked, adapted to Java 8 and new features will be added.
+
+The input files for the embedded fortunes is a small selection from
+[fortune-mod](https://github.com/shlomif/fortune-mod) and
+[fortunes-de](https://github.com/michaaa/fortunes-de)
+which are delivered with Ubuntu.
 
 ---
 December 2017,
