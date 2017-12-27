@@ -96,38 +96,6 @@ public class CookieResourceProvider implements CookieProvider {
         return new Cookie(getSaying(n));
     }
 
-    /**
-     * Returns a short cookie which belongs to the given random. I.e. the next
-     * call to this method will return the same short cookie.
-     *
-     * @param random whole range of 'int' is allowed as value
-     * @return a cookie
-     */
-    @Override
-    public Cookie getShortCookie(int random) {
-        Cookie cookie = getCookie(random);
-        if (cookie.length() > getShortLength()) {
-            return getShortCookie(random + 1);
-        }
-        return cookie;
-    }
-
-    /**
-     * Returns a long cookie which belongs to the given random. I.e. the next
-     * call to this method will return the same long cookie.
-     *
-     * @param random whole range of 'int' is allowed as value
-     * @return a cookie
-     */
-    @Override
-    public Cookie getLongCookie(int random) {
-        Cookie cookie = getCookie(random);
-        if (cookie.length() > getShortLength()) {
-            return cookie;
-        }
-        return getLongCookie(random + 1);
-    }
-
     private String getSaying(int n) {
         return getSayings().get(n);
     }

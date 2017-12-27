@@ -80,7 +80,13 @@ public interface CookieProvider {
      * @param random whole range of 'int' is allowed as value
      * @return a cookie
      */
-    Cookie getShortCookie(int random);
+    default Cookie getShortCookie(int random) {
+        Cookie cookie = getCookie(random);
+        if (cookie.length() > getShortLength()) {
+            return getShortCookie(random + 1);
+        }
+        return cookie;
+    }
 
     /**
      * Returns a long cookie which belongs to the given random. I.e. the next
@@ -89,7 +95,13 @@ public interface CookieProvider {
      * @param random whole range of 'int' is allowed as value
      * @return a cookie
      */
-    Cookie getLongCookie(int random);
+    default Cookie getLongCookie(int random) {
+        Cookie cookie = getCookie(random);
+        if (cookie.length() > getShortLength()) {
+            return cookie;
+        }
+        return getLongCookie(random + 1);
+    }
 
     /**
      * Set the longest fortune length (in characters) considered to be "short"
