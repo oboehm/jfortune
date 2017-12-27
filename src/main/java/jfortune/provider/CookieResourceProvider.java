@@ -55,6 +55,15 @@ public class CookieResourceProvider implements CookieProvider {
         removeOldSources(names);
     }
 
+    /**
+     * Returns the set of sources where the cookies comes from.
+     *
+     * @return set of sources
+     */
+    public Set<String> getSources() {
+        return this.cookies.keySet();
+    }
+
     private void addNewSources(String[] names) {
         for (String name : names) {
             List<String> sayings = cookies.get(name);

@@ -11,10 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
-import static org.hamcrest.CoreMatchers.*;
-import static org.hamcrest.Matchers.greaterThan;
-import static org.hamcrest.Matchers.greaterThanOrEqualTo;
-import static org.hamcrest.Matchers.lessThanOrEqualTo;
+import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
 
@@ -38,6 +35,7 @@ public class CookieResourceProviderTest {
     @Test
     public void testUmlaute() {
         CookieResourceProvider provider = new CookieResourceProvider("test/umlaut");
+        assertThat(provider.getSources(), contains("test/umlaut"));
         String cookie = provider.getCookie().getText().trim();
         assertThat(cookie, anyOf(equalTo("R\u00fcckvergr\u00f6\u00dferungsger\u00e4t"),
                 equalTo("TR\u00c4NEN\u00dcBERSTR\u00d6MT")));

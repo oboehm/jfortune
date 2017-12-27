@@ -17,6 +17,8 @@
  */
 package jfortune;
 
+import java.util.Set;
+
 /**
  * Interface CookieProvider.
  *
@@ -130,5 +132,12 @@ public interface CookieProvider {
      * @param names list of names
      */
     void setSources(String... names);
+
+    /**
+     * Returns the set of sources where the cookies comes from.
+     *
+     * @return set of sources
+     */
+    Set<String> getSources();
 
 }
