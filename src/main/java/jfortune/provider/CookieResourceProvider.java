@@ -144,7 +144,6 @@ public class CookieResourceProvider implements CookieProvider {
 
     private List<String> getSayings() {
         List<String> sayings = new ArrayList<>();
-        Set<Map.Entry<String, List<String>>> entries = cookies.entrySet();
         for (List<String> cookieList : cookies.values()) {
             sayings.addAll(cookieList);
         }
