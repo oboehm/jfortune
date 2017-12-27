@@ -8,6 +8,7 @@ import jfortune.CookieProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import patterntesting.runtime.monitor.ResourcepathMonitor;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -22,6 +23,8 @@ import java.util.*;
 public class CookieResourceProvider implements CookieProvider {
 
     private static final Logger LOG = LogManager.getLogger(CookieResourceProvider.class);
+    private static final String FORTUNES_FOLDER = "/fortunes/";
+    private final Locale language;
     private final Map<String, List<String>> cookies = new HashMap<>();
     private Random random = new Random();
 
@@ -39,6 +42,30 @@ public class CookieResourceProvider implements CookieProvider {
      */
     public CookieResourceProvider(String name) {
         cookies.put(name, readSayings(name));
+        language = Locale.ENGLISH;
+    }
+
+    /**
+     * The default language is English. If you want cookies for other languages
+     * you must set it here.
+     *
+     * <p>
+     * NOTE: in v0.5 only {@link Locale#GERMAN} is supported as additional
+     * language whereas the default cookies are in English (most of them).
+     * </p>
+     *
+     * @param language e.g. {@link Locale#GERMAN}
+     */
+    public CookieResourceProvider(Locale language) {
+        this.language = language;
+        String prefix = FORTUNES_FOLDER + language.getLanguage() + "/";
+        ResourcepathMonitor resourceMon = ResourcepathMonitor.getInstance();
+        for (String rsc : resourceMon.getResources()) {
+            if (rsc.startsWith(prefix)) {
+                String name = rsc.substring(FORTUNES_FOLDER.length());
+                cookies.put(name, readSayings(name));
+            }
+        }
     }
 
     /**
@@ -126,11 +153,11 @@ public class CookieResourceProvider implements CookieProvider {
         }
         return sayings;
     }
-    
-    private List<String> readSayings(String name) {
-        String from = "/fortunes/" + name;
+
+    private static List<String> readSayings(String name) {
+        String from = FORTUNES_FOLDER + name;
         List<String> sayings = new ArrayList<>();
-        LOG.debug("Reading fortunes from {}...", from);
+        LOG.trace("Reading fortunes from {}...", from);
         try (InputStream istream = CookieResourceProvider.class.getResourceAsStream(from)) {
             if (istream == null) {
                 throw new IOException("resource '" + from + "' not found");

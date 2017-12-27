@@ -11,6 +11,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.junit.Test;
 
+import java.util.Locale;
+
 import static org.hamcrest.Matchers.*;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertThat;
@@ -101,6 +103,16 @@ public class CookieResourceProviderTest {
     public void testCookieResourceProviderString() {
         CookieResourceProvider literature = new CookieResourceProvider("literature");
         assertThat(literature.getNumberOfCookies(), is(greaterThan(1)));
+    }
+
+    /**
+     * Test mehthod for {@link CookieResourceProvider#CookieResourceProvider(Locale)}.
+     */
+    @Test
+    public void testGermanCookies() {
+        CookieResourceProvider deProvider = new CookieResourceProvider(Locale.GERMAN);
+        assertThat(deProvider.getSources(), hasItem("de/computer"));
+        LOG.info(deProvider.getShortCookie());
     }
 
 }
