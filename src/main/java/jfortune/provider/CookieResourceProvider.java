@@ -41,8 +41,8 @@ public class CookieResourceProvider implements CookieProvider {
      * @param name name of the resource, e.g. "fortunes"
      */
     public CookieResourceProvider(String name) {
-        cookies.put(name, readSayings(name));
         language = Locale.ENGLISH;
+        cookies.put(name, readSayings(Locale.ENGLISH, name));
     }
 
     /**
@@ -62,8 +62,8 @@ public class CookieResourceProvider implements CookieProvider {
         ResourcepathMonitor resourceMon = ResourcepathMonitor.getInstance();
         for (String rsc : resourceMon.getResources()) {
             if (rsc.startsWith(prefix)) {
-                String name = rsc.substring(FORTUNES_FOLDER.length());
-                cookies.put(name, readSayings(name));
+                String name = rsc.substring(prefix.length());
+                cookies.put(name, readSayings(language, name));
             }
         }
     }
@@ -93,10 +93,7 @@ public class CookieResourceProvider implements CookieProvider {
 
     private void addNewSources(String[] names) {
         for (String name : names) {
-            List<String> sayings = cookies.get(name);
-            if (sayings == null) {
-                cookies.put(name, readSayings(name));
-            }
+            cookies.computeIfAbsent(name, k -> readSayings(language, k));
         }
     }
 
@@ -154,13 +151,16 @@ public class CookieResourceProvider implements CookieProvider {
         return sayings;
     }
 
-    private static List<String> readSayings(String name) {
-        String from = FORTUNES_FOLDER + name;
+    private static List<String> readSayings(Locale lang, String name) {
+        String from = FORTUNES_FOLDER + lang.getLanguage() + "/" + name;
+        if (CookieResourceProvider.class.getResource(from) == null) {
+            from = FORTUNES_FOLDER + name;
+        }
         List<String> sayings = new ArrayList<>();
         LOG.trace("Reading fortunes from {}...", from);
         try (InputStream istream = CookieResourceProvider.class.getResourceAsStream(from)) {
             if (istream == null) {
-                throw new IOException("resource '" + from + "' not found");
+                throw new IOException(lang + " resource '" + from + "' not found");
             }
             BufferedReader reader = new BufferedReader(new InputStreamReader(istream, StandardCharsets.UTF_8));
             String s = readSaying(reader);

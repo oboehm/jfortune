@@ -111,7 +111,19 @@ public class CookieResourceProviderTest {
     @Test
     public void testGermanCookies() {
         CookieResourceProvider deProvider = new CookieResourceProvider(Locale.GERMAN);
-        assertThat(deProvider.getSources(), hasItem("de/computer"));
+        assertThat(deProvider.getSources(), hasItem("computer"));
+        LOG.info(deProvider.getShortCookie());
+    }
+
+    /**
+     * Test method for {@link CookieResourceProvider#setSources(String...)}.
+     */
+    @Test
+    public void testSetSources() {
+        CookieResourceProvider deProvider = new CookieResourceProvider(Locale.GERMAN);
+        deProvider.setSources("tips");
+        assertThat(deProvider.getSources(), hasItem("tips"));
+        assertThat(deProvider.getSources(), not(hasItem("computer")));
         LOG.info(deProvider.getShortCookie());
     }
 
