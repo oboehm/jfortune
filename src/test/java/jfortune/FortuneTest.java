@@ -26,6 +26,7 @@ import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
 import java.util.Locale;
 
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.junit.Assert.assertNotNull;
@@ -64,19 +65,33 @@ public class FortuneTest {
 
     /**
      * Test method for {@link Fortune#main(String[])}.
-     *
-     * @throws UnsupportedEncodingException the unsupported encoding exception
      */
     @Test
-    public void testMain() throws UnsupportedEncodingException {
+    public void testMain() {
+        String fortune = callMain();
+        LOG.info(fortune);
+        assertThat(fortune, is(notNullValue()));
+    }
+
+    /**
+     * This is the test for the help option ("-h".
+     */
+    @Test
+    public void testHelp() {
+        String help = callMain("-h");
+        assertThat(help, containsString("help"));
+        LOG.info(help);
+    }
+
+    private static String callMain(String... args) {
         PrintStream stdout = System.out;
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
         System.setOut(new PrintStream(buffer));
         try {
-            Fortune.main(new String[0]);
-            String fortune = buffer.toString("UTF-8");
-            LOG.info(fortune);
-            assertThat(fortune, is(notNullValue()));
+            Fortune.main(args);
+            return buffer.toString("UTF-8");
+        } catch (UnsupportedEncodingException ex) {
+            throw new IllegalStateException("UTF-8 is not supported", ex);
         } finally {
             System.setOut(stdout);
         }

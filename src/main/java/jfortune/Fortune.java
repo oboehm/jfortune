@@ -19,6 +19,7 @@ package jfortune;
 
 
 import jfortune.provider.CookieResourceProvider;
+import org.apache.commons.cli.*;
 
 import java.util.Locale;
 
@@ -82,8 +83,26 @@ public final class Fortune {
      * @param args will be ignored.
      */
     @SuppressWarnings("squid:S106")
-    public static void main(String[] args)  {
-        System.out.println(new Fortune().getCookie());
+    public static void main(String[] args) {
+        Options options = new Options();
+        options.addOption("h", "help", false, "print this message");
+        CommandLineParser parser = new DefaultParser();
+        try {
+            CommandLine line = parser.parse(options, args);
+            if (line.hasOption('h')) {
+                printHelp(options);
+            } else {
+                System.out.println(new Fortune().getCookie());
+            }
+        } catch (ParseException exp) {
+            System.err.println("Parsing failed. Reason: " + exp.getMessage());
+            printHelp(options);
+        }
+    }
+
+    private static void printHelp(Options options) {
+        HelpFormatter formatter = new HelpFormatter();
+        formatter.printHelp("fortune", options);
     }
 
 }
