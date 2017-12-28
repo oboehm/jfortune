@@ -20,6 +20,8 @@ package jfortune;
 
 import jfortune.provider.CookieResourceProvider;
 
+import java.util.Locale;
+
 /**
  * This is the main entry point of the application.
  *
@@ -28,11 +30,45 @@ import jfortune.provider.CookieResourceProvider;
  */
 public final class Fortune {
 
-    private final CookieProvider provider = new CookieResourceProvider();
+    private final CookieProvider provider;
 
     /**
-     * It generates a random epigram.
+     * The default constructor uses a default {@link CookieProvider} to get
+     * later the cookies.
+     */
+    public Fortune() {
+        this(new CookieResourceProvider());
+    }
+
+    /**
+     * Like the default constructor {@link Fortune#Fortune()} the default
+     * {@link CookieProvider} is used but with language given as argument.
+     * In v0.5 only "de" and "en" are provide as language but this may change
+     * in the future.
      *
+     * @param language e.g. {@link Locale#GERMAN}
+     */
+    public Fortune(Locale language) {
+        this(new CookieResourceProvider(language));
+    }
+
+    /**
+     * If you write your own {@link CookieProvider} you can instantiate the
+     * {@link Fortune} class with it. If not you can use the
+     * {@link CookieResourceProvider}. Other providers may follow in the
+     * future.
+     *
+     * @param provider e.g. {@link CookieResourceProvider}
+     */
+    public Fortune(CookieProvider provider) {
+        this.provider = provider;
+    }
+
+    /**
+     * It generates a random epigram. It uses the sources you give as argument.
+     * If the argument is empty the default sources are used.
+     *
+     * @param names the names
      * @return a random cookie
      */
     public Cookie getCookie(String ... names) {

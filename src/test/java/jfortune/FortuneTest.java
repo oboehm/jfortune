@@ -24,6 +24,7 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Locale;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
@@ -39,7 +40,7 @@ import static org.junit.Assert.assertThat;
 public class FortuneTest {
 
     private static Logger LOG = LogManager.getLogger(FortuneTest.class);
-    private final Fortune fortune = new Fortune();
+    private final Fortune fortune = new Fortune(Locale.GERMAN);
 
     /**
      * Test method for {@link Fortune#getCookie(String...)}.
