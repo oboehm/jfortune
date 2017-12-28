@@ -84,20 +84,31 @@ public final class Fortune {
      */
     @SuppressWarnings("squid:S106")
     public static void main(String[] args) {
-        Options options = new Options();
-        options.addOption("h", "help", false, "print this message");
+        Fortune fortune = new Fortune();
+        Options options = getOptions();
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine line = parser.parse(options, args);
             if (line.hasOption('h')) {
                 printHelp(options);
-            } else {
-                System.out.println(new Fortune().getCookie());
+                return;
             }
+            if (line.hasOption('c')) {
+                Locale lang = Locale.forLanguageTag(line.getOptionValue('c'));
+                fortune = new Fortune(lang);
+            }
+            System.out.println(fortune.getCookie());
         } catch (ParseException exp) {
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
             printHelp(options);
         }
+    }
+
+    private static Options getOptions() {
+        Options options = new Options();
+        options.addOption("h", "help", false, "print this message");
+        options.addOption("c", "country", true, "country or language");
+        return options;
     }
 
     private static void printHelp(Options options) {

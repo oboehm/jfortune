@@ -67,8 +67,7 @@ public class FortuneTest {
      */
     @Test
     public void testMain() {
-        String fortune = callMain();
-        assertThat(fortune, is(notNullValue()));
+        callMain();
     }
 
     /**
@@ -89,6 +88,14 @@ public class FortuneTest {
         assertThat(output, containsString("help"));
     }
 
+    /**
+     * With "-c" you can set the language.
+     */
+    @Test
+    public void testCountryOption() {
+        callMain("-c", "de");
+    }
+
     private static String callMain(String... args) {
         PrintStream stdout = System.out;
         PrintStream stderr = System.err;
@@ -101,6 +108,7 @@ public class FortuneTest {
             String output = outStream.toString("UTF-8");
             String error = errStream.toString("UTF-8");
             LOG.info("Output of 'main({})':\n{}{}", Arrays.toString(args), error, output);
+            assertThat(output, is(notNullValue()));
             return output;
         } catch (UnsupportedEncodingException ex) {
             throw new IllegalStateException("UTF-8 is not supported", ex);
