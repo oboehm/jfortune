@@ -24,11 +24,10 @@ import org.junit.Test;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.io.UnsupportedEncodingException;
+import java.util.Arrays;
 import java.util.Locale;
 
-import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.notNullValue;
+import static org.hamcrest.CoreMatchers.*;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
@@ -69,31 +68,45 @@ public class FortuneTest {
     @Test
     public void testMain() {
         String fortune = callMain();
-        LOG.info(fortune);
         assertThat(fortune, is(notNullValue()));
     }
 
     /**
-     * This is the test for the help option ("-h".
+     * This is the test for the help option ("-h").
      */
     @Test
     public void testHelp() {
         String help = callMain("-h");
         assertThat(help, containsString("help"));
-        LOG.info(help);
+    }
+
+    /**
+     * If an unknown option is given you should get also an help message.
+     */
+    @Test
+    public void testUnknownOption() {
+        String output = callMain("--unknown");
+        assertThat(output, containsString("help"));
     }
 
     private static String callMain(String... args) {
         PrintStream stdout = System.out;
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-        System.setOut(new PrintStream(buffer));
+        PrintStream stderr = System.err;
+        ByteArrayOutputStream outStream = new ByteArrayOutputStream();
+        ByteArrayOutputStream errStream = new ByteArrayOutputStream();
+        System.setOut(new PrintStream(outStream));
+        System.setErr(new PrintStream(errStream));
         try {
             Fortune.main(args);
-            return buffer.toString("UTF-8");
+            String output = outStream.toString("UTF-8");
+            String error = errStream.toString("UTF-8");
+            LOG.info("Output of 'main({})':\n{}{}", Arrays.toString(args), error, output);
+            return output;
         } catch (UnsupportedEncodingException ex) {
             throw new IllegalStateException("UTF-8 is not supported", ex);
         } finally {
             System.setOut(stdout);
+            System.setErr(stderr);
         }
     }
 
