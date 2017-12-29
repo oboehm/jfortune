@@ -22,6 +22,9 @@ import jfortune.provider.CookieResourceProvider;
 import org.apache.commons.cli.*;
 
 import java.util.Locale;
+import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 /**
  * This is the main entry point of the application.
@@ -66,6 +69,15 @@ public final class Fortune {
     }
 
     /**
+     * Returns the {@link CookieProvider} which is used to provide the cookies.
+     *
+     * @return the {@link CookieProvider}
+     */
+    public CookieProvider getProvider() {
+        return provider;
+    }
+
+    /**
      * It generates a random epigram. It uses the sources you give as argument.
      * If the argument is empty the default sources are used.
      *
@@ -97,6 +109,10 @@ public final class Fortune {
                 Locale lang = Locale.forLanguageTag(line.getOptionValue('c'));
                 fortune = new Fortune(lang);
             }
+            if (line.hasOption('f')) {
+                print(fortune.getProvider().getSources());
+                return;
+            }
             System.out.println(fortune.getCookie());
         } catch (ParseException exp) {
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
@@ -108,12 +124,19 @@ public final class Fortune {
         Options options = new Options();
         options.addOption("h", "help", false, "print this message");
         options.addOption("c", "country", true, "country or language");
+        options.addOption("f", "file", false,
+                "print out the list of files or resources which would be searched, but don't print a fortune");
         return options;
     }
 
     private static void printHelp(Options options) {
         HelpFormatter formatter = new HelpFormatter();
         formatter.printHelp("fortune", options);
+    }
+
+    private static void print(Set<String> entries) {
+        SortedSet<String> sorted = new TreeSet<>(entries);
+        sorted.forEach(System.out::println);
     }
 
 }

@@ -96,6 +96,16 @@ public class FortuneTest {
         callMain("-c", "de");
     }
 
+    /**
+     * If we list the files for the Spanish version ("-c es"), we should see
+     * one of the Spanish fortunes.
+     */
+    @Test
+    public void testFileOption() {
+        String output = callMain("-c", "es", "-f");
+        assertThat(output, containsString("arte"));
+    }
+
     private static String callMain(String... args) {
         PrintStream stdout = System.out;
         PrintStream stderr = System.err;
