@@ -97,7 +97,7 @@ public class CookieResourceProviderTest {
     }
 
     /**
-     * Test method for {@link CookieResourceProvider#CookieResourceProvider(String)}.
+     * Test method for {@link CookieResourceProvider#CookieResourceProvider(String...)}.
      */
     @Test
     public void testCookieResourceProviderString() {
@@ -106,7 +106,7 @@ public class CookieResourceProviderTest {
     }
 
     /**
-     * Test mehthod for {@link CookieResourceProvider#CookieResourceProvider(Locale)}.
+     * Test mehthod for {@link CookieResourceProvider#CookieResourceProvider(Locale, String...)}.
      */
     @Test
     public void testGermanCookies() {

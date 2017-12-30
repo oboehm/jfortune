@@ -46,14 +46,27 @@ public final class Fortune {
 
     /**
      * Like the default constructor {@link Fortune#Fortune()} the default
-     * {@link CookieProvider} is used but with language given as argument.
-     * In v0.5 only "de" and "en" are provide as language but this may change
-     * in the future.
+     * {@link CookieProvider} is used but with the given names of the
+     * resources. If you want all resources of a language use
+     * {@link Fortune#Fortune(Locale, String...)}.
+     *
+     * @param names e.g. "fortunes", "literature"
+     */
+    public Fortune(String... names) {
+        this(new CookieResourceProvider(names));
+    }
+
+    /**
+     * Like the default constructor {@link Fortune#Fortune()} the default
+     * {@link CookieProvider} is used but with language given as argument
+     * In v0.5 only "de", "es" and "en" are provided as language but this may
+     * change in the future.
      *
      * @param language e.g. {@link Locale#GERMAN}
+     * @param names e.g. "fortunes", "literature"
      */
-    public Fortune(Locale language) {
-        this(new CookieResourceProvider(language));
+    public Fortune(Locale language, String... names) {
+        this(new CookieResourceProvider(language, names));
     }
 
     /**

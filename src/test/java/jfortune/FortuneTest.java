@@ -65,6 +65,18 @@ public class FortuneTest {
     }
 
     /**
+     * We mix German cookies with some Spanish cookie to see what is the
+     * result.
+     */
+    @Test
+    public void getGermanAndOtherCookies() {
+        Fortune mixed = new Fortune(Locale.GERMAN, "fortunes", "es/lao-tse");
+        Cookie cookie = fortune.getShortCookie();
+        assertThat(cookie, is(notNullValue()));
+        LOG.info(cookie);
+    }
+
+    /**
      * Test method for {@link Fortune#main(String[])}.
      */
     @Test

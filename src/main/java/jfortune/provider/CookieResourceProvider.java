@@ -36,13 +36,14 @@ public class CookieResourceProvider implements CookieProvider {
     }
 
     /**
-     * Instantiates the class with the given name.
+     * Instantiates the class with the given names. As names you can use
+     * "fortunes" or "literature".
      *
-     * @param name name of the resource, e.g. "fortunes"
+     * @param names names of the resource, e.g. "fortunes"
      */
-    public CookieResourceProvider(String name) {
+    public CookieResourceProvider(String... names) {
         language = Locale.ENGLISH;
-        cookies.put(name, readSayings(Locale.ENGLISH, name));
+        Arrays.stream(names).forEach(s -> cookies.put(s, readSayings(s)));
     }
 
     /**
@@ -55,8 +56,9 @@ public class CookieResourceProvider implements CookieProvider {
      * </p>
      *
      * @param language e.g. {@link Locale#GERMAN}
+     * @param names names of the resource, e.g. "fortunes"
      */
-    public CookieResourceProvider(Locale language) {
+    public CookieResourceProvider(Locale language, String... names) {
         this.language = language;
         String prefix = FORTUNES_FOLDER + language.getLanguage() + "/";
         ResourcepathMonitor resourceMon = ResourcepathMonitor.getInstance();
@@ -66,6 +68,7 @@ public class CookieResourceProvider implements CookieProvider {
                 cookies.put(name, readSayings(language, name));
             }
         }
+        Arrays.stream(names).forEach(s -> cookies.put(s, readSayings(s)));
     }
 
     /**
@@ -151,15 +154,20 @@ public class CookieResourceProvider implements CookieProvider {
     }
 
     private static List<String> readSayings(Locale lang, String name) {
-        String from = FORTUNES_FOLDER + lang.getLanguage() + "/" + name;
-        if (CookieResourceProvider.class.getResource(from) == null) {
-            from = FORTUNES_FOLDER + name;
+        String resource = lang.getLanguage() + "/" + name;
+        if (CookieResourceProvider.class.getResource(FORTUNES_FOLDER + resource) == null) {
+            resource = name;
         }
+        return readSayings(resource);
+    }
+
+    private static List<String> readSayings(String resource) {
+        String from = FORTUNES_FOLDER + resource;
         List<String> sayings = new ArrayList<>();
         LOG.trace("Reading fortunes from {}...", from);
         try (InputStream istream = CookieResourceProvider.class.getResourceAsStream(from)) {
             if (istream == null) {
-                throw new IOException(lang + " resource '" + from + "' not found");
+                throw new IOException("resource '" + from + "' not found");
             }
             BufferedReader reader = new BufferedReader(new InputStreamReader(istream, StandardCharsets.UTF_8));
             String s = readSaying(reader);
@@ -173,7 +181,7 @@ public class CookieResourceProvider implements CookieProvider {
         LOG.debug("Reading fortunes from {} finished with {} entries.", from, sayings.size());
         return sayings;
     }
-    
+
     private static String readSaying(BufferedReader reader) throws IOException {
         StringBuilder cookie = new StringBuilder();
         String line = reader.readLine();
