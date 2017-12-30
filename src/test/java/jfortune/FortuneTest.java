@@ -28,6 +28,8 @@ import java.util.Arrays;
 import java.util.Locale;
 
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.Matchers.greaterThanOrEqualTo;
+import static org.hamcrest.Matchers.lessThanOrEqualTo;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertThat;
 
@@ -104,6 +106,24 @@ public class FortuneTest {
     public void testFileOption() {
         String output = callMain("-c", "es", "-f");
         assertThat(output, containsString("arte"));
+    }
+
+    /**
+     * The option "-l" provides long fortunes.
+     */
+    @Test
+    public void testLongOption() {
+        String output = callMain("-l");
+        assertThat(output.length(), greaterThanOrEqualTo(160));
+    }
+
+    /**
+     * The option "-s" provides short fortunes.
+     */
+    @Test
+    public void testShortOption() {
+        String output = callMain("-s");
+        assertThat(output.length(), lessThanOrEqualTo(160));
     }
 
     private static String callMain(String... args) {

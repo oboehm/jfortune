@@ -90,6 +90,30 @@ public final class Fortune {
     }
 
     /**
+     * It generates a short random epigram. It uses the sources you give as
+     * argument. If the argument is empty the default sources are used.
+     *
+     * @param names the names
+     * @return a random cookie
+     */
+    public Cookie getShortCookie(String ... names) {
+        provider.setSources(names);
+        return provider.getShortCookie();
+    }
+
+    /**
+     * It generates a long random epigram. It uses the sources you give as
+     * argument. If the argument is empty the default sources are used.
+     *
+     * @param names the names
+     * @return a random cookie
+     */
+    public Cookie getLongCookie(String ... names) {
+        provider.setSources(names);
+        return provider.getLongCookie();
+    }
+
+    /**
      * Prints a cookie to stdout.
      *
      * @param args will be ignored.
@@ -113,7 +137,13 @@ public final class Fortune {
                 print(fortune.getProvider().getSources());
                 return;
             }
-            System.out.println(fortune.getCookie());
+            if (line.hasOption('l')) {
+                print(fortune.getLongCookie());
+            } else if (line.hasOption('s')) {
+                print(fortune.getShortCookie());
+            } else {
+                print(fortune.getCookie());
+            }
         } catch (ParseException exp) {
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
             printHelp(options);
@@ -126,6 +156,8 @@ public final class Fortune {
         options.addOption("c", "country", true, "country or language");
         options.addOption("f", "file", false,
                 "print out the list of files or resources which would be searched, but don't print a fortune");
+        options.addOption("l", "long", false, "long dictums only");
+        options.addOption("s", "short", false, "short apothegms only");
         return options;
     }
 
@@ -137,6 +169,10 @@ public final class Fortune {
     private static void print(Set<String> entries) {
         SortedSet<String> sorted = new TreeSet<>(entries);
         sorted.forEach(System.out::println);
+    }
+
+    private static void print(Cookie cookie) {
+        System.out.println(cookie.getText());
     }
 
 }
