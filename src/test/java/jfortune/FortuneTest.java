@@ -60,7 +60,7 @@ public class FortuneTest {
      */
     @Test
     public void getCookieLiterature() {
-        Cookie cookie = fortune.getCookie("literature");
+        Cookie cookie = fortune.getCookie("en/literature");
         assertThat(cookie, is(notNullValue()));
     }
 
@@ -70,7 +70,7 @@ public class FortuneTest {
      */
     @Test
     public void getGermanAndOtherCookies() {
-        Fortune mixed = new Fortune(Locale.GERMAN, "fortunes", "es/lao-tse");
+        Fortune mixed = new Fortune(Locale.GERMAN, "mixed", "es/lao-tse");
         Cookie cookie = fortune.getShortCookie();
         assertThat(cookie, is(notNullValue()));
         LOG.info(cookie);
@@ -117,7 +117,7 @@ public class FortuneTest {
     @Test
     public void testFileOption() {
         String output = callMain("-c", "es", "-f");
-        assertThat(output, containsString("arte"));
+        assertThat(output, containsString("es/arte"));
     }
 
     /**

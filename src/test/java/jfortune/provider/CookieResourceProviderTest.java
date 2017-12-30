@@ -101,7 +101,7 @@ public class CookieResourceProviderTest {
      */
     @Test
     public void testCookieResourceProviderString() {
-        CookieResourceProvider literature = new CookieResourceProvider("literature");
+        CookieResourceProvider literature = new CookieResourceProvider("en/literature");
         assertThat(literature.getNumberOfCookies(), is(greaterThan(1)));
     }
 
@@ -111,7 +111,7 @@ public class CookieResourceProviderTest {
     @Test
     public void testGermanCookies() {
         CookieResourceProvider deProvider = new CookieResourceProvider(Locale.GERMAN);
-        assertThat(deProvider.getSources(), hasItem("computer"));
+        assertThat(deProvider.getSources(), hasItem("de/computer"));
         LOG.info(deProvider.getShortCookie());
     }
 

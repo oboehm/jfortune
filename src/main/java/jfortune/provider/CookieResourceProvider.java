@@ -32,7 +32,7 @@ public class CookieResourceProvider implements CookieProvider {
      * Default constructor for default cookies.
      */
     public CookieResourceProvider() {
-    	this("fortunes");
+    	this("mixed");
     }
 
     /**
@@ -47,9 +47,8 @@ public class CookieResourceProvider implements CookieProvider {
     }
 
     /**
-     * The default language is English. If you want cookies for other languages
-     * you must set it here.
-     *
+     * The default cookies are English mixed with some other languages. If you
+     * want cookies for other languages you must set it here.
      * <p>
      * NOTE: in v0.5 only {@link Locale#GERMAN} is supported as additional
      * language whereas the default cookies are in English (most of them).
@@ -64,7 +63,7 @@ public class CookieResourceProvider implements CookieProvider {
         ResourcepathMonitor resourceMon = ResourcepathMonitor.getInstance();
         for (String rsc : resourceMon.getResources()) {
             if (rsc.startsWith(prefix)) {
-                String name = rsc.substring(prefix.length());
+                String name = rsc.substring(FORTUNES_FOLDER.length());
                 cookies.put(name, readSayings(language, name));
             }
         }
