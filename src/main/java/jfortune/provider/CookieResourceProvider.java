@@ -29,21 +29,19 @@ public class CookieResourceProvider implements CookieProvider {
     private Random random = new Random();
 
     /**
-     * Default constructor for default cookies.
-     */
-    public CookieResourceProvider() {
-    	this("mixed");
-    }
-
-    /**
      * Instantiates the class with the given names. As names you can use
-     * "fortunes" or "literature".
+     * "fortunes" or "literature". If it is used as default constructor with
+     * no arguments the resource "mixed" will be used as default.
      *
-     * @param names names of the resource, e.g. "fortunes"
+     * @param names names of the resource, e.g. "en/fortunes"
      */
     public CookieResourceProvider(String... names) {
         language = Locale.ENGLISH;
-        Arrays.stream(names).forEach(s -> cookies.put(s, readSayings(s)));
+        if (names.length == 0) {
+            cookies.put("mixed", readSayings("mixed"));
+        } else {
+            Arrays.stream(names).forEach(s -> cookies.put(s, readSayings(s)));
+        }
     }
 
     /**
@@ -71,40 +69,12 @@ public class CookieResourceProvider implements CookieProvider {
     }
 
     /**
-     * The sources you can set is a list of resources. These resources contains
-     * the sources for the cookies.
-     *
-     * @param names name of the cookie resources
-     */
-    public void setSources(String... names) {
-        if (names.length == 0) {
-            return;
-        }
-        addNewSources(names);
-        removeOldSources(names);
-    }
-
-    /**
      * Returns the set of sources where the cookies comes from.
      *
      * @return set of sources
      */
     public Set<String> getSources() {
         return this.cookies.keySet();
-    }
-
-    private void addNewSources(String[] names) {
-        for (String name : names) {
-            cookies.computeIfAbsent(name, k -> readSayings(language, k));
-        }
-    }
-
-    private void removeOldSources(String[] names) {
-        Set<String> keys = new HashSet<>(cookies.keySet());
-        keys.removeAll(Arrays.asList(names));
-        for (String name : keys) {
-            cookies.remove(name);
-        }
     }
 
     /**

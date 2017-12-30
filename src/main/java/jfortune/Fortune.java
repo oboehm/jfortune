@@ -91,38 +91,29 @@ public final class Fortune {
     }
 
     /**
-     * It generates a random epigram. It uses the sources you give as argument.
-     * If the argument is empty the default sources are used.
+     * It generates a random epigram.
      *
-     * @param names the names
      * @return a random cookie
      */
-    public Cookie getCookie(String ... names) {
-        provider.setSources(names);
+    public Cookie getCookie() {
         return provider.getCookie();
     }
 
     /**
-     * It generates a short random epigram. It uses the sources you give as
-     * argument. If the argument is empty the default sources are used.
+     * It generates a short random epigram.
      *
-     * @param names the names
      * @return a random cookie
      */
-    public Cookie getShortCookie(String ... names) {
-        provider.setSources(names);
+    public Cookie getShortCookie() {
         return provider.getShortCookie();
     }
 
     /**
-     * It generates a long random epigram. It uses the sources you give as
-     * argument. If the argument is empty the default sources are used.
+     * It generates a long random epigram.
      *
-     * @param names the names
      * @return a random cookie
      */
-    public Cookie getLongCookie(String ... names) {
-        provider.setSources(names);
+    public Cookie getLongCookie() {
         return provider.getLongCookie();
     }
 
@@ -133,7 +124,6 @@ public final class Fortune {
      */
     @SuppressWarnings("squid:S106")
     public static void main(String[] args) {
-        Fortune fortune = new Fortune();
         Options options = getOptions();
         CommandLineParser parser = new DefaultParser();
         try {
@@ -142,9 +132,11 @@ public final class Fortune {
                 printHelp(options);
                 return;
             }
+            String[] names = line.getArgs();
+            Fortune fortune = new Fortune(names);
             if (line.hasOption('c')) {
                 Locale lang = Locale.forLanguageTag(line.getOptionValue('c'));
-                fortune = new Fortune(lang);
+                fortune = new Fortune(lang, names);
             }
             if (line.hasOption('f')) {
                 print(fortune.getProvider().getSources());
@@ -176,7 +168,8 @@ public final class Fortune {
 
     private static void printHelp(Options options) {
         HelpFormatter formatter = new HelpFormatter();
-        formatter.printHelp("fortune", options);
+        formatter.printHelp("fortune [name ...]", "Prints a random fortune cookie.", options,
+                "For a more detail description ask Google with 'man fortune'.", true);
     }
 
     private static void print(Set<String> entries) {

@@ -125,16 +125,9 @@ public interface CookieProvider {
     }
 
     /**
-     * Set the sources where the cookie provider should read its cookies,
+     * Returns the set of sources where the cookies comes from.
      * This can be a list of resources, a list of files or list of URLs,
      * depending on the provider.
-     *
-     * @param names list of names
-     */
-    void setSources(String... names);
-
-    /**
-     * Returns the set of sources where the cookies comes from.
      *
      * @return set of sources
      */

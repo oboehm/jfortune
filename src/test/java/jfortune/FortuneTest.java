@@ -27,6 +27,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Arrays;
 import java.util.Locale;
 
+import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.*;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
@@ -45,23 +46,13 @@ public class FortuneTest {
     private final Fortune fortune = new Fortune(Locale.GERMAN);
 
     /**
-     * Test method for {@link Fortune#getCookie(String...)}.
+     * Test method for {@link Fortune#getCookie()}.
      */
     @Test
-    public void getCookieDefault() {
+    public void getCookie() {
         Cookie cookie = fortune.getCookie();
         assertNotNull(cookie);
         LOG.info(cookie);
-    }
-
-    /**
-     * Test method for {@link Fortune#getCookie(String...)} with one name
-     * for a CookieProvider.
-     */
-    @Test
-    public void getCookieLiterature() {
-        Cookie cookie = fortune.getCookie("en/literature");
-        assertThat(cookie, is(notNullValue()));
     }
 
     /**
@@ -136,6 +127,15 @@ public class FortuneTest {
     public void testShortOption() {
         String output = callMain("-s");
         assertThat(output.length(), lessThanOrEqualTo(160));
+    }
+
+    /**
+     * Here we add as option the name of a resource.
+     */
+    @Test
+    public void testNameOption() {
+        String output = callMain("test/oneliner");
+        assertEquals("Two beer or not two beer... (Shakesbeer)", output.trim());
     }
 
     private static String callMain(String... args) {
