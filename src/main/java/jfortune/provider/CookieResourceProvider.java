@@ -24,7 +24,6 @@ public class CookieResourceProvider implements CookieProvider {
 
     private static final Logger LOG = LogManager.getLogger(CookieResourceProvider.class);
     private static final String FORTUNES_FOLDER = "/fortunes/";
-    private final Locale language;
     private final Map<String, List<String>> cookies = new HashMap<>();
     private Random random = new Random();
 
@@ -36,7 +35,6 @@ public class CookieResourceProvider implements CookieProvider {
      * @param names names of the resource, e.g. "en/fortunes"
      */
     public CookieResourceProvider(String... names) {
-        language = Locale.ENGLISH;
         if (names.length == 0) {
             cookies.put("mixed", readSayings("mixed"));
         } else {
@@ -56,7 +54,6 @@ public class CookieResourceProvider implements CookieProvider {
      * @param names names of the resource, e.g. "fortunes"
      */
     public CookieResourceProvider(Locale language, String... names) {
-        this.language = language;
         String prefix = FORTUNES_FOLDER + language.getLanguage() + "/";
         ResourcepathMonitor resourceMon = ResourcepathMonitor.getInstance();
         for (String rsc : resourceMon.getResources()) {

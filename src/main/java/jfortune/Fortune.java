@@ -32,6 +32,7 @@ import java.util.TreeSet;
  * @author oboehm
  * @since 0.5 (22.12.2017)
  */
+@SuppressWarnings("squid:S106")
 public final class Fortune {
 
     private final CookieProvider provider;
@@ -122,7 +123,6 @@ public final class Fortune {
      *
      * @param args will be ignored.
      */
-    @SuppressWarnings("squid:S106")
     public static void main(String[] args) {
         Options options = getOptions();
         CommandLineParser parser = new DefaultParser();
