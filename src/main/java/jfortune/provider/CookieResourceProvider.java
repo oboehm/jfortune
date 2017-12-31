@@ -18,6 +18,16 @@ import java.nio.charset.StandardCharsets;
 import java.util.*;
 
 /**
+ * This implementation of the {@link CookieProvider} interface gets its cookies
+ * from resources. If you want to extend the provides sayings put the resources
+ * in the classpath and place it in the fortunes folder (this is the starting
+ * point for cookie resources).
+ * <p>
+ * The format of the sayings is the same as the source format for the original
+ * fortune program. The single sayings are divide by empty lines with a '%" at
+ * the beginning.
+ * </p>
+ *
  * @author oliver
  */
 public class CookieResourceProvider implements CookieProvider {

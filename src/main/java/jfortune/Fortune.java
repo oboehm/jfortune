@@ -119,7 +119,14 @@ public final class Fortune {
     }
 
     /**
-     * Prints a cookie to stdout.
+     * Without an option it prints a cookie to stdout. If you want to want to
+     * see the allowewd options use the option <tt>-h</tt> - this will print
+     * a short help with the allowed options.
+     * <p>
+     * You can also call the
+     * <a href="http://www.skrenta.com/rt/man/fortune.6.html">fortune(6)</a>
+     * manuel to see the option. Most options are provided by the main program.
+     * </p>
      *
      * @param args will be ignored.
      */
