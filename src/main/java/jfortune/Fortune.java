@@ -125,13 +125,18 @@ public final class Fortune {
      */
     public static void main(String[] args) {
         System.setProperty("log4j.configurationFile", "log4j2-jfortune.xml");
+        int rc = run(args);
+        System.exit(rc);
+    }
+
+    protected static int run(String[] args) {
         Options options = getOptions();
         CommandLineParser parser = new DefaultParser();
         try {
             CommandLine line = parser.parse(options, args);
             if (line.hasOption('h')) {
                 printHelp(options);
-                return;
+                return 0;
             }
             String[] names = line.getArgs();
             Fortune fortune = new Fortune(names);
@@ -141,7 +146,7 @@ public final class Fortune {
             }
             if (line.hasOption('f')) {
                 print(fortune.getProvider().getSources());
-                return;
+                return 0;
             }
             if (line.hasOption('l')) {
                 print(fortune.getLongCookie());
@@ -150,9 +155,11 @@ public final class Fortune {
             } else {
                 print(fortune.getCookie());
             }
+            return 0;
         } catch (ParseException exp) {
             System.err.println("Parsing failed. Reason: " + exp.getMessage());
             printHelp(options);
+            return 1;
         }
     }
 

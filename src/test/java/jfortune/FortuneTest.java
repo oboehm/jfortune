@@ -146,10 +146,10 @@ public class FortuneTest {
         System.setOut(new PrintStream(outStream));
         System.setErr(new PrintStream(errStream));
         try {
-            Fortune.main(args);
+            Fortune.run(args);
             String output = outStream.toString("UTF-8");
             String error = errStream.toString("UTF-8");
-            LOG.info("Output of 'main({})':\n{}{}", Arrays.toString(args), error, output);
+            LOG.info("Output of 'run({})':\n{}{}", Arrays.toString(args), error, output);
             assertThat(output, is(notNullValue()));
             return output;
         } catch (UnsupportedEncodingException ex) {
