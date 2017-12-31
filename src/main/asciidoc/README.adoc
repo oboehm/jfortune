@@ -17,7 +17,7 @@ Other infos are present in the top link:../README.md[README].
 
 |https://sonarcloud.io/projects[sonarcloud.io]
 |https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune[image:https://sonarcloud.io/api/badges/gate?key=de.javatux.jfortune:jfortune[Quality Gate]]
-|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune%3Adevelop[image:https://sonarcloud.io/api/badges/gate?key=de.javatux.jfortune:jfachwert:develop[Quality Gate]]
+|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune%3Adevelop[image:https://sonarcloud.io/api/badges/gate?key=de.javatux.jfortune:jfortune:develop[Quality Gate]]
 |`sonar:sonar`
 
 |https://coveralls.io/github/oboehm/jfortune[CoverAlls.io]
