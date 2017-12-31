@@ -115,4 +115,15 @@ public class CookieResourceProviderTest {
         LOG.info(deProvider.getShortCookie());
     }
 
+    /**
+     * If {@link CookieResourceProvider#CookieResourceProvider(Locale, String...)}
+     * is called with a non existing country the default cookies should be
+     * loaded.
+     */
+    @Test
+    public void testWrongCountry() {
+        CookieResourceProvider stateless = new CookieResourceProvider(Locale.CANADA);
+        assertThat(stateless.getSources(), not(emptyCollectionOf(String.class)));
+    }
+
 }
