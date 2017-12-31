@@ -139,7 +139,7 @@
                 <filter>
                   <artifact>org.apache.logging.log4j:log4j-core</artifact>
                   <includes>
-                    <include>META-INF/**</include>
+                    <include>META-INF/log4j-provider.properties</include>
                     <include>org/apache/logging/log4j/core/**</include>
                   </includes>
                 </filter>
