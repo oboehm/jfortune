@@ -133,13 +133,14 @@
                 <filter>
                   <artifact>org.apache.logging.log4j:log4j-api</artifact>
                   <includes>
-                    <include>**</include>
+                    <include>org/apache/logging/log4j/**</include>
                   </includes>
                 </filter>
                 <filter>
                   <artifact>org.apache.logging.log4j:log4j-core</artifact>
                   <includes>
-                    <include>**</include>
+                    <include>META-INF/**</include>
+                    <include>org/apache/logging/log4j/core/**</include>
                   </includes>
                 </filter>
               </filters>
