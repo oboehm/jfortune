@@ -11,17 +11,24 @@ The first version appears 1979 in [Unix Version 7](https://en.wikipedia.org/wiki
 `jfortune` is a rewrite of the program in Java which can be defined as dependency for your own Java application.
 
 The first version of `jfortune` was written in 2003 with Java 1.4, JUnit 3 and [Ant](http://ant.apache.org/).
-It is now digged out, put on GitHub and delivered to the Central Maven Repo ([OSSRH-36625](https://issues.sonatype.org/browse/OSSRH-36625)).
-Later it will be reworked, adapted to Java 8 and new features will be added.
+It is now digged out, put on GitHub and delivered as v0.3 to the Central Maven Repo ([OSSRH-36625](https://issues.sonatype.org/browse/OSSRH-36625)).
+
+With v0.5 this version was reworked, adapted to Java 8 and a command line interface added.
+This version contains more fortunes but is not compatible with v0.3.
 
 The input files for the embedded fortunes is a small selection from
-[fortune-mod](https://github.com/shlomif/fortune-mod) and
-[fortunes-de](https://github.com/michaaa/fortunes-de)
+[fortune-mod](https://github.com/shlomif/fortune-mod),
+[fortunes-de](https://github.com/michaaa/fortunes-de) and
+[fortunes-es](https://reposcope.com/package/fortunes-es)
 which are delivered with Ubuntu.
+
+
+## More Infos
+
+* Project page: http://javatux.de/jfortune/
+* Javadoc: http://javatux.de/jfortune/apidocs/index.html
+* Development: [src/main/asciidoc/README](src/main/asciidoc/README.adoc)
 
 ---
 December 2017,
 Oli B.
-
-
-...[more](src/main/asciidoc/README.adoc)
