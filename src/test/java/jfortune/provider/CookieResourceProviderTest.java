@@ -23,7 +23,7 @@ import static org.junit.Assert.assertThat;
 public class CookieResourceProviderTest {
     
 	private static final Logger LOG = LogManager.getLogger(CookieResourceProviderTest.class);
-    private static final CookieResourceProvider provider = new CookieResourceProvider();
+    private final CookieResourceProvider provider = new CookieResourceProvider();
 
     @Test
     public void testInit() {
@@ -124,6 +124,16 @@ public class CookieResourceProviderTest {
     public void testWrongCountry() {
         CookieResourceProvider stateless = new CookieResourceProvider(Locale.CANADA);
         assertThat(stateless.getSources(), not(emptyCollectionOf(String.class)));
+    }
+
+    /**
+     * Test method for {@link jfortune.CookieProvider#setShortLength(int)}.
+     */
+    @Test
+    public void testSetShortLength() {
+        provider.setShortLength(80);
+        Cookie cookie = provider.getShortCookie();
+        assertThat(cookie.length(), is(lessThanOrEqualTo(80)));
     }
 
 }

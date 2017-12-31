@@ -36,6 +36,7 @@ public class CookieResourceProvider implements CookieProvider {
     private static final String FORTUNES_FOLDER = "/fortunes/";
     private final Map<String, List<String>> cookies = new HashMap<>();
     private Random random = new Random();
+    private int shortLength = 160;
 
     /**
      * Instantiates the class with the given names. As names you can use
@@ -73,6 +74,27 @@ public class CookieResourceProvider implements CookieProvider {
             }
         }
         Arrays.stream(names).forEach(s -> cookies.put(s, readSayings(s)));
+    }
+
+    /**
+     * Set the longest fortune length (in characters) considered to be "short"
+     * (the default is 160). All fortunes longer than this are considered "long".
+     *
+     * @param n length
+     */
+    @Override
+    public void setShortLength(int n) {
+        this.shortLength = n;
+    }
+
+    /**
+     * Gets the length of fortune length considered to be "short":
+     *
+     * @return length in characters (default is 160)
+     */
+    @Override
+    public int getShortLength() {
+        return this.shortLength;
     }
 
     /**

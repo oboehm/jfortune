@@ -112,7 +112,7 @@ public interface CookieProvider {
      * @param n length
      */
     default void setShortLength(int n) {
-        throw new UnsupportedOperationException("not yet implemented");
+        throw new UnsupportedOperationException("not implemented");
     }
 
     /**
