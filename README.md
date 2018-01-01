@@ -30,5 +30,5 @@ which are delivered with Ubuntu.
 * Development: [src/main/asciidoc/README](src/main/asciidoc/README.adoc)
 
 ---
-December 2017,
+January 2018,
 Oli B.
