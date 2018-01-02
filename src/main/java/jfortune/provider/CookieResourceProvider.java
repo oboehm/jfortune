@@ -126,19 +126,7 @@ public class CookieResourceProvider implements CookieProvider {
      */
     @Override
     public Cookie getCookie() {
-        return getCookie(random.nextInt());
-    }
-
-    /**
-     * Returns a cookie which belongs the given random. I.e. the next call
-     * with the same random value will return the same cookie.
-     *
-     * @param random whole range of 'int' is allowed as value
-     * @return a cookie
-     */
-    @Override
-    public Cookie getCookie(int random) {
-        int n = Math.abs(random % this.getNumberOfCookies());
+        int n = Math.abs(random.nextInt() % this.getNumberOfCookies());
         return new Cookie(getSaying(n));
     }
 

@@ -78,8 +78,13 @@ public interface CookieProvider {
      *
      * @param random whole range of 'int' is allowed as value
      * @return a cookie
+     * @deprecated since 0.6, use {@link #setRandom(Random)} the get same random values
      */
-    Cookie getCookie(int random);
+    @Deprecated
+    default Cookie getCookie(int random) {
+        setRandom(new Random(random));
+        return getCookie();
+    }
 
     /**
      * Returns a short cookie which belongs to the given random. I.e. the next
@@ -87,7 +92,9 @@ public interface CookieProvider {
      *
      * @param random whole range of 'int' is allowed as value
      * @return a cookie
+     * @deprecated since 0.6, use {@link #setRandom(Random)} the get same random values
      */
+    @Deprecated
     default Cookie getShortCookie(int random) {
         Cookie cookie = getCookie(random);
         if (cookie.length() > getShortLength()) {
@@ -102,7 +109,9 @@ public interface CookieProvider {
      *
      * @param random whole range of 'int' is allowed as value
      * @return a cookie
+     * @deprecated since 0.6, use {@link #setRandom(Random)} the get same random values
      */
+    @Deprecated
     default Cookie getLongCookie(int random) {
         Cookie cookie = getCookie(random);
         if (cookie.length() > getShortLength()) {
