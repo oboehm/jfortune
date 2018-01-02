@@ -17,6 +17,10 @@
  */
 package jfortune;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Random;
 import java.util.Set;
 
 /**
@@ -26,6 +30,8 @@ import java.util.Set;
  * @since 0.5 (21.12.2017)
  */
 public interface CookieProvider {
+
+    Logger LOG = LogManager.getLogger(CookieProvider.class);
 
     /**
      * The only thing a CookieProvider should provide is a fortune.
@@ -103,6 +109,17 @@ public interface CookieProvider {
             return cookie;
         }
         return getLongCookie(random + 1);
+    }
+
+    /**
+     * This method allows you to control the 'randomness' of the cookies. E.g.
+     * you can use a {@link Random} with a defined seed to get the same cookies
+     * each time. This can be helpful for testing.
+     *
+     * @param random a random number generator
+     */
+    default void setRandom(Random random) {
+        LOG.warn("setRandom({}) is ignored.", random);
     }
 
     /**

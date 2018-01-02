@@ -131,6 +131,16 @@ public class FortuneTest {
     }
 
     /**
+     * Setting the same random seed should generate the same sequence.
+     */
+    @Test
+    public void testRandomOption() {
+        String one = callMain("-r", "1");
+        String anotherOne = callMain("-r", "1");
+        assertEquals(one, anotherOne);
+    }
+
+    /**
      * Here we add as option the name of a resource.
      */
     @Test

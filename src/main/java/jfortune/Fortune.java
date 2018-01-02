@@ -21,10 +21,7 @@ package jfortune;
 import jfortune.provider.CookieResourceProvider;
 import org.apache.commons.cli.*;
 
-import java.util.Locale;
-import java.util.Set;
-import java.util.SortedSet;
-import java.util.TreeSet;
+import java.util.*;
 
 /**
  * This is the main entry point of the application.
@@ -130,6 +127,29 @@ public final class Fortune {
     }
 
     /**
+     * This method allows you to control the 'randomness' of the cookies.
+     * Setting the same seed brings you the same "random" sequence of cookies.
+     *
+     * @param seed seed of the used random number generator
+     * @since 0.6
+     */
+    public void setRandom(long seed) {
+        setRandom(new Random(seed));
+    }
+
+    /**
+     * This method allows you to control the 'randomness' of the cookies. E.g.
+     * you can use a {@link Random} with a defined seed to get the same cookies
+     * each time. This can be helpful for testing.
+     *
+     * @param random a random number generator
+     * @since 0.6
+     */
+    public void setRandom(Random random) {
+        provider.setRandom(random);
+    }
+
+    /**
      * Without an option it prints a cookie to stdout. If you want to want to
      * see the allowewd options use the option <tt>-h</tt> - this will print
      * a short help with the allowed options.
@@ -166,6 +186,9 @@ public final class Fortune {
                 print(fortune.getProvider().getSources());
                 return 0;
             }
+            if (line.hasOption('r')) {
+                fortune.setRandom(Long.valueOf(line.getOptionValue('r')));
+            }
             if (line.hasOption('n')) {
                 fortune.setShortLength(Integer.valueOf(line.getOptionValue('n')));
             }
@@ -191,8 +214,9 @@ public final class Fortune {
         options.addOption("f", "file", false,
                 "print out the list of files or resources which would be searched, but don't print a fortune");
         options.addOption("l", "long", false, "long dictums only");
-        options.addOption("n", true, "set the longest fortune length considered to be 'short'");
         options.addOption("s", "short", false, "short apothegms only");
+        options.addOption("n", true, "set the longest fortune length considered to be 'short'");
+        options.addOption("r", "random", true, "seed for the random generator");
         return options;
     }
 

@@ -107,6 +107,18 @@ public class CookieResourceProvider implements CookieProvider {
     }
 
     /**
+     * This method allows you to control the 'randomness' of the cookies. E.g.
+     * you can use a {@link Random} with a defined seed to get the same cookies
+     * each time. This can be helpful for testing.
+     *
+     * @param random a random number generator
+     */
+    @Override
+    public void setRandom(Random random) {
+        this.random = random;
+    }
+
+    /**
      * Returns random, hopefully interesting, adage.
      *
      * @return a fortune
