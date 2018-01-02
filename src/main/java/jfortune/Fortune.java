@@ -119,6 +119,17 @@ public final class Fortune {
     }
 
     /**
+     * Set the longest fortune length (in characters) considered to be "short"
+     * (the default is 160). All fortunes longer than this are considered "long".
+     *
+     * @param n length
+     * @since 0.6
+     */
+    public void setShortLength(int n) {
+        provider.setShortLength(n);
+    }
+
+    /**
      * Without an option it prints a cookie to stdout. If you want to want to
      * see the allowewd options use the option <tt>-h</tt> - this will print
      * a short help with the allowed options.
@@ -155,6 +166,9 @@ public final class Fortune {
                 print(fortune.getProvider().getSources());
                 return 0;
             }
+            if (line.hasOption('n')) {
+                fortune.setShortLength(Integer.valueOf(line.getOptionValue('n')));
+            }
             if (line.hasOption('l')) {
                 print(fortune.getLongCookie());
             } else if (line.hasOption('s')) {
@@ -177,6 +191,7 @@ public final class Fortune {
         options.addOption("f", "file", false,
                 "print out the list of files or resources which would be searched, but don't print a fortune");
         options.addOption("l", "long", false, "long dictums only");
+        options.addOption("n", true, "set the longest fortune length considered to be 'short'");
         options.addOption("s", "short", false, "short apothegms only");
         return options;
     }

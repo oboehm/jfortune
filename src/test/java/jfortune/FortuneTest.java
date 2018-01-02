@@ -121,12 +121,13 @@ public class FortuneTest {
     }
 
     /**
-     * The option "-s" provides short fortunes.
+     * The option "-s" provides short fortunes. And the option "-n" defines
+     * the lenght of "short" fortunes.
      */
     @Test
     public void testShortOption() {
-        String output = callMain("-s");
-        assertThat(output.length(), lessThanOrEqualTo(160));
+        String output = callMain("-n", "30", "-s");
+        assertThat(output.trim().length(), lessThanOrEqualTo(30));
     }
 
     /**
