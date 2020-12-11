@@ -46,6 +46,17 @@ public class FortuneTest {
     private final Fortune fortune = new Fortune(Locale.GERMAN);
 
     /**
+     * Test method for {@link Fortune(Locale, String)}.
+     */
+    @Test
+    public void filterFortune() {
+        Fortune filterdFortune = new Fortune(Locale.GERMAN,"sprichworte");
+        Cookie cookie = filterdFortune.getCookie();
+        assertNotNull(cookie);
+        LOG.info(cookie);
+    }
+
+    /**
      * Test method for {@link Fortune#getCookie()}.
      */
     @Test
