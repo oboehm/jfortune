@@ -37,14 +37,14 @@
       <plugin>
           <groupId>org.sonarsource.scanner.maven</groupId>
           <artifactId>sonar-maven-plugin</artifactId>
-          <version>3.3.0.603</version>
+        <version>3.7.0.1746</version>
       </plugin>
 
       <!-- Code Coverage  -->
       <plugin>
         <groupId>org.jacoco</groupId>
         <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.7.9</version>
+        <version>0.8.5</version>
         <executions>
           <execution>
             <id>default-prepare-agent</id>
@@ -258,12 +258,14 @@
     <developer>
       <name>Oliver Boehm</name>
       <id>oboehm</id>
-      <email>boehm@javatux.de</email>
-      <organization>JavaTux</organization>
-      <roles>
-        <role>Java Developer</role>
-      </roles>
+      <url>https://github.com/oboehm</url>
     </developer>
   </developers>
+  <contributors>
+    <contributor>
+      <name>Stefan Schubert</name>
+      <url>https://github.com/StefanSchubert</url>
+    </contributor>
+  </contributors>
 
 </project>

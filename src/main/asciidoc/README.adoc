@@ -16,8 +16,8 @@ Other infos are present in the top link:../../../README.md[README].
 |s. link:../.travis.yml[.travis.yml]
 
 |https://sonarcloud.io/projects[sonarcloud.io]
-|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune[image:https://sonarcloud.io/api/badges/gate?key=de.javatux.jfortune:jfortune[Quality Gate]]
-|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune%3Adevelop[image:https://sonarcloud.io/api/badges/gate?key=de.javatux.jfortune:jfortune:develop[Quality Gate]]
+|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune[image:https://sonarcloud.io/api/project_badges/measure?project=de.javatux.jfortune%3Ajfortune&metric=alert_status[Quality Gate]]
+|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune%3Adevelop[image:https://sonarcloud.io/api/project_badges/measure?project=de.javatux.jfortune%3Ajfortune%3Adevelop&metric=alert_status[Quality Gate]]
 |`sonar:sonar`
 
 |https://coveralls.io/github/oboehm/jfortune[CoverAlls.io]
