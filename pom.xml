@@ -4,7 +4,7 @@
 
   <groupId>de.javatux.jfortune</groupId>
   <artifactId>jfortune</artifactId>
-  <version>0.6-SNAPSHOT</version>
+  <version>0.6</version>
   <packaging>jar</packaging>
 
   <name>jfortune</name>
@@ -216,16 +216,13 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.2.0</version>
         <reportSets>
           <reportSet>
             <id>html</id>
             <configuration>
               <source>${java.version}</source>
               <show>protected</show>
-              <links>
-                <link>http://docs.oracle.com/javase/8/docs/api/</link>
-              </links>
             </configuration>
             <reports>
               <report>javadoc</report>

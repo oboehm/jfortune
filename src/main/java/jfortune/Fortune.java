@@ -151,7 +151,7 @@ public final class Fortune {
 
     /**
      * Without an option it prints a cookie to stdout. If you want to want to
-     * see the allowewd options use the option <tt>-h</tt> - this will print
+     * see the allowewd options use the option &lt;tt&gt;-h&lt;/tt&gt; - this will print
      * a short help with the allowed options.
      * <p>
      * You can also call the
