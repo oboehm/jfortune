@@ -5,6 +5,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) is not used as the number of versions is small and manageable.
 
 
+## [Unrelased]
+
+### Security
+
+* update to Log4J 2.15.0 to fix Log4J vulnerability
+  [CVE-2021-44228](https://nvd.nist.gov/vuln/detail/CVE-2021-44228)
+
+
 ## [0.6] - 2020-12-12
 
 ### Fixed
