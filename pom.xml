@@ -4,7 +4,7 @@
 
   <groupId>de.javatux.jfortune</groupId>
   <artifactId>jfortune</artifactId>
-  <version>0.7-SNAPSHOT</version>
+  <version>0.7</version>
   <packaging>jar</packaging>
 
   <name>jfortune</name>
