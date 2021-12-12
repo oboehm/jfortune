@@ -5,7 +5,7 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 [Semantic Versioning](https://semver.org/spec/v2.0.0.html) is not used as the number of versions is small and manageable.
 
 
-## [0.7] - 2020-12-12
+## [0.7] - 2021-12-12
 
 ### Security
 
