@@ -10,7 +10,12 @@ Other infos are present in the top link:../../../README.md[README].
 |===
 |server |master |develop |configuration
 
-|https://travis-ci.org/oboehm/jfortune/[Travis-CI.org]
+|https://travis-ci.com/oboehm/jfortune/[Travis-CI.com]
+|https://travis-ci.com/oboehm/jfortune/branches[image:https://travis-ci.com/oboehm/jfortune.svg?branch=master[Build Status]]
+|https://travis-ci.com/oboehm/jfortune/branches[image:https://travis-ci.com/oboehm/jfortune.svg?branch=develop[Build Status]]
+|s. link:../.travis.yml[.travis.yml]
+
+|https://travis-ci.org/oboehm/jfortune/[Travis-CI.org] (old)
 |https://travis-ci.org/oboehm/jfortune/branches[image:https://travis-ci.org/oboehm/jfortune.svg?branch=master[Build Status]]
 |https://travis-ci.org/oboehm/jfortune/branches[image:https://travis-ci.org/oboehm/jfortune.svg?branch=develop[Build Status]]
 |s. link:../.travis.yml[.travis.yml]
