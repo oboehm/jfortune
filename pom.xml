@@ -21,8 +21,8 @@
   </licenses>
 
   <properties>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.target>1.8</maven.compiler.target>
+    <maven.compiler.source>11</maven.compiler.source>
+    <maven.compiler.target>11</maven.compiler.target>
     <main.class>jfortune.Fortune</main.class>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
@@ -167,6 +167,24 @@
             </goals>
           </execution>
         </executions>
+      </plugin>
+      <!-- unused dependencies: mvn dependency:analyze -->
+      <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.8.1</version>
+      </plugin>
+      <!-- call 'mvn versions:display-dependency-updates' to see upates -->
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>versions-maven-plugin</artifactId>
+        <version>2.18.0</version>
+        <configuration>
+          <ignoredVersions>
+            <ignoredVersion>.*-alpha.*</ignoredVersion>
+            <ignoredVersion>.*-beta.*</ignoredVersion>
+            <ignoredVersion>.*-M.*</ignoredVersion>
+          </ignoredVersions>
+        </configuration>
       </plugin>
 
     </plugins>
