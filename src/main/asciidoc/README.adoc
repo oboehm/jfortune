@@ -10,20 +10,10 @@ Other infos are present in the top link:../../../README.md[README].
 |===
 |server |master |develop |configuration
 
-|https://travis-ci.com/oboehm/jfortune/[Travis-CI.com]
-|https://travis-ci.com/oboehm/jfortune/branches[image:https://travis-ci.com/oboehm/jfortune.svg?branch=master[Build Status]]
-|https://travis-ci.com/oboehm/jfortune/branches[image:https://travis-ci.com/oboehm/jfortune.svg?branch=develop[Build Status]]
-|s. link:../.travis.yml[.travis.yml]
-
-|https://travis-ci.org/oboehm/jfortune/[Travis-CI.org] (old)
-|https://travis-ci.org/oboehm/jfortune/branches[image:https://travis-ci.org/oboehm/jfortune.svg?branch=master[Build Status]]
-|https://travis-ci.org/oboehm/jfortune/branches[image:https://travis-ci.org/oboehm/jfortune.svg?branch=develop[Build Status]]
-|s. link:../.travis.yml[.travis.yml]
-
-|https://sonarcloud.io/projects[sonarcloud.io]
-|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune[image:https://sonarcloud.io/api/project_badges/measure?project=de.javatux.jfortune%3Ajfortune&metric=alert_status[Quality Gate]]
-|https://sonarcloud.io/dashboard?id=de.javatux.jfortune%3Ajfortune%3Adevelop[image:https://sonarcloud.io/api/project_badges/measure?project=de.javatux.jfortune%3Ajfortune%3Adevelop&metric=alert_status[Quality Gate]]
-|`sonar:sonar`
+|https://github.com/oboehm/jfortune/actions[GitHub Actions]
+|https://github.com/oboehm/jfortune/actions[image:https://github.com/oboehm/jfortune/actions/workflows/maven.yml/badge.svg?branch=[https://travis-ci.com/oboehm/jfortune.svg?branch=master[Build Status]]
+|https://github.com/oboehm/jfortune/actions[image:https://github.com/oboehm/jfortune/actions/workflows/maven.yml/badge.svg[Build Status]]
+|s. link:../../../.github/workflows/maven.yml[maven.yml]
 
 |https://coveralls.io/github/oboehm/jfortune[CoverAlls.io]
 |https://coveralls.io/github/oboehm/jfortune?branch=master[image:https://coveralls.io/repos/github/oboehm/jfortune/badge.svg?branch=master[Coverage Status]]
