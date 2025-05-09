@@ -29,7 +29,8 @@ which are delivered with Ubuntu.
 * [Changelog](CHANGELOG.md)  
 * Javadoc: http://javatux.de/jfortune/apidocs/index.html
 * Development: [src/main/asciidoc/README](src/main/asciidoc/README.adoc)
+* SBOM:  [src/main/asciidoc/SBOM](src/main/asciidoc/SBOM.adoc)
 
 ---
-December 2018,
+Mai 2025,
 Oli B.

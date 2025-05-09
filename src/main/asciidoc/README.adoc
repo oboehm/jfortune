@@ -54,3 +54,9 @@ This is a little checklist for the next release:
 . merge the release branch to master and develop branch
 . change to develop branch and start next SNAPSHOT
 . after a few days: check jfortune with http://search.maven.org/#search%7Cga%7C1%7Cg%3A%22de.javatux.jfortune%22[search.maven.org]
+
+
+
+== SBOM
+
+See link:SBOM.adoc[SBOM Generation] to see how to generate and use an SBOM to scan for vulnerabilities.

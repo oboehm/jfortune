@@ -1,0 +1,32 @@
+= SBOM Generation
+
+Since v0.9 the generation of an SBOM (https://snyk.io/de/learn/software-bill-of-materials/[Software Bill Of Materials]) is supported.
+It uses the https://github.com/CycloneDX/cyclonedx-maven-plugin[CycloneDX Maven Plugin] to generate a link:../../../target/bom.json[bom.json] and link:../../../target/bom.xml[bom.xml] file in the target directory:
+
+[source]
+----
+$ mvn package
+----
+
+
+== Vulnerabilities
+
+To scan the SBOM for known vulnerabilities you can use https://github.com/anchore/grype[grype]:
+
+[source]
+----
+$ cd target
+$ grype sbom:bom.json
+----
+
+For v0.8 this generates this report with 2 vulnerabilities:
+
+[source]
+----
+ ? Scanned for vulnerabilities     [2 vulnerability matches]
+   ??? by severity: 0 critical, 1 high, 1 medium, 0 low, 0 negligible
+   ??? by status:   2 fixed, 0 not-fixed, 0 ignored
+NAME        INSTALLED  FIXED-IN  TYPE          VULNERABILITY        SEVERITY
+commons-io  2.6        2.14.0    java-archive  GHSA-78wr-2p64-hpwj  High
+commons-io  2.6        2.7       java-archive  GHSA-gwrp-pvrq-jmwv  Medium
+----
