@@ -1,4 +1,4 @@
-[![Maven Central](https://maven-badges.herokuapp.com/maven-central/de.javatux.jfortune/jfortune/badge.svg)](https://maven-badges.herokuapp.com/maven-central/de.javatux.jfortune/jfortune)
+[![Maven Central](https://maven-badges.sml.io/maven-central/de.javatux.jfortune/jfortune/badge.svg)](https://maven-badges.sml.io/maven-central/de.javatux.jfortune/jfortune)
 [![Java CI with Maven](https://github.com/oboehm/jfortune/actions/workflows/maven.yml/badge.svg?branch=develop)](https://github.com/oboehm/jfortune/actions/workflows/maven.yml)
 [![Coverage Status](https://coveralls.io/repos/github/oboehm/jfortune/badge.svg?branch=develop)](https://coveralls.io/github/oboehm/jfortune)
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](http://www.apache.org/licenses/LICENSE-2.0.html)
@@ -31,5 +31,5 @@ which are delivered with Ubuntu.
 * SBOM:  [src/main/asciidoc/SBOM](src/main/asciidoc/SBOM.adoc)
 
 ---
-Mai 2025,
+February 2026,
 Oli B.
