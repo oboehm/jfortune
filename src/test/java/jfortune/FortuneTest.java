@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2017 by Oliver Boehm
+ * Copyright (c) 2017-2026 by Oliver Boehm
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -19,20 +19,20 @@ package jfortune;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
-import java.io.UnsupportedEncodingException;
+import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.Locale;
 
-import static junit.framework.TestCase.assertEquals;
 import static org.hamcrest.CoreMatchers.*;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 import static org.hamcrest.Matchers.lessThanOrEqualTo;
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 /**
  * Unit tests for {@link Fortune} class.
@@ -40,30 +40,30 @@ import static org.junit.Assert.assertThat;
  * @author oboehm
  * @since 0.5 (22.12.2017)
  */
-public class FortuneTest {
+class FortuneTest {
 
-    private static Logger LOG = LogManager.getLogger(FortuneTest.class);
+    private static final Logger log = LogManager.getLogger(FortuneTest.class);
     private final Fortune fortune = new Fortune(Locale.GERMAN);
 
     /**
      * Test method for {@link Fortune(Locale, String)}.
      */
     @Test
-    public void filterFortune() {
+    void filterFortune() {
         Fortune filterdFortune = new Fortune(Locale.GERMAN,"sprichworte");
         Cookie cookie = filterdFortune.getCookie();
         assertNotNull(cookie);
-        LOG.info(cookie);
+        log.info(cookie);
     }
 
     /**
      * Test method for {@link Fortune#getCookie()}.
      */
     @Test
-    public void getCookie() {
+    void getCookie() {
         Cookie cookie = fortune.getCookie();
         assertNotNull(cookie);
-        LOG.info(cookie);
+        log.info(cookie);
     }
 
     /**
@@ -71,11 +71,11 @@ public class FortuneTest {
      * result.
      */
     @Test
-    public void getGermanAndOtherCookies() {
+    void getGermanAndOtherCookies() {
         Fortune mixed = new Fortune(Locale.GERMAN, "mixed", "es/lao-tse");
         Cookie cookie = fortune.getShortCookie();
         assertThat(cookie, is(notNullValue()));
-        LOG.info(cookie);
+        log.info(cookie);
     }
 
     /**
@@ -90,7 +90,7 @@ public class FortuneTest {
      * This is the test for the help option ("-h").
      */
     @Test
-    public void testHelp() {
+    void testHelp() {
         String help = callMain("-h");
         assertThat(help, containsString("help"));
     }
@@ -99,7 +99,7 @@ public class FortuneTest {
      * If an unknown option is given you should get also an help message.
      */
     @Test
-    public void testUnknownOption() {
+    void testUnknownOption() {
         String output = callMain("--unknown");
         assertThat(output, containsString("help"));
     }
@@ -108,7 +108,7 @@ public class FortuneTest {
      * With "-c" you can set the language.
      */
     @Test
-    public void testCountryOption() {
+    void testCountryOption() {
         callMain("-c", "de");
     }
 
@@ -117,7 +117,7 @@ public class FortuneTest {
      * one of the Spanish fortunes.
      */
     @Test
-    public void testFileOption() {
+    void testFileOption() {
         String output = callMain("-c", "es", "-f");
         assertThat(output, containsString("es/arte"));
     }
@@ -126,7 +126,7 @@ public class FortuneTest {
      * The option "-l" provides long fortunes.
      */
     @Test
-    public void testLongOption() {
+    void testLongOption() {
         String output = callMain("-l");
         assertThat(output.length(), greaterThanOrEqualTo(160));
     }
@@ -136,7 +136,7 @@ public class FortuneTest {
      * the lenght of "short" fortunes.
      */
     @Test
-    public void testShortOption() {
+    void testShortOption() {
         String output = callMain("-n", "30", "-s");
         assertThat(output.trim().length(), lessThanOrEqualTo(30));
     }
@@ -145,7 +145,7 @@ public class FortuneTest {
      * Setting the same random seed should generate the same sequence.
      */
     @Test
-    public void testRandomOption() {
+    void testRandomOption() {
         String one = callMain("-r", "1");
         String anotherOne = callMain("-r", "1");
         assertEquals(one, anotherOne);
@@ -155,7 +155,7 @@ public class FortuneTest {
      * Here we add as option the name of a resource.
      */
     @Test
-    public void testNameOption() {
+    void testNameOption() {
         String output = callMain("test/oneliner");
         assertEquals("Two beer or not two beer... (Shakesbeer)", output.trim());
     }
@@ -169,13 +169,11 @@ public class FortuneTest {
         System.setErr(new PrintStream(errStream));
         try {
             Fortune.run(args);
-            String output = outStream.toString("UTF-8");
-            String error = errStream.toString("UTF-8");
-            LOG.info("Output of 'run({})':\n{}{}", Arrays.toString(args), error, output);
+            String output = outStream.toString(StandardCharsets.UTF_8);
+            String error = errStream.toString(StandardCharsets.UTF_8);
+            log.info("Output of 'run({})':\n{}{}", Arrays.toString(args), error, output);
             assertThat(output, is(notNullValue()));
             return output;
-        } catch (UnsupportedEncodingException ex) {
-            throw new IllegalStateException("UTF-8 is not supported", ex);
         } finally {
             System.setOut(stdout);
             System.setErr(stderr);

@@ -1,32 +1,43 @@
 /*
- * Created on May 16, 2003
+ * Copyright (c) 2017-2026 by Oliver Boehm
  *
- * To change this generated comment go to 
- * Window>Preferences>Java>Code Generation>Code Template
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ *
+ * (c)reated May 16, 2003 by oboehm (boehm@javatux.de)
  */
 package jfortune.provider;
 
 import jfortune.Cookie;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Locale;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 /**
  * @author oliver
  */
-public class CookieResourceProviderTest {
+class CookieResourceProviderTest {
     
-	private static final Logger LOG = LogManager.getLogger(CookieResourceProviderTest.class);
+	private static final Logger log = LogManager.getLogger(CookieResourceProviderTest.class);
     private final CookieResourceProvider provider = new CookieResourceProvider();
 
     @Test
-    public void testInit() {
+    void testInit() {
         assertThat(provider.getNumberOfCookies(), is(greaterThan(1)));
     }
 
@@ -35,7 +46,7 @@ public class CookieResourceProviderTest {
      * appears.
      */
     @Test
-    public void testUmlaute() {
+    void testUmlaute() {
         CookieResourceProvider provider = new CookieResourceProvider("test/umlaut");
         assertThat(provider.getSources(), contains("test/umlaut"));
         String cookie = provider.getCookie().getText().trim();
@@ -47,7 +58,7 @@ public class CookieResourceProviderTest {
      * Two cookies received with the same (random) number should be equals.
      */
     @Test
-    public void testGetCookie() {
+    void testGetCookie() {
         int n = (int) System.currentTimeMillis();
         Cookie one = provider.getCookie(n);
         Cookie two = provider.getCookie(n);
@@ -58,9 +69,9 @@ public class CookieResourceProviderTest {
      * Test method for {@link CookieResourceProvider#getShortCookie()}.
      */
     @Test
-    public void testGetShortCookie() {
+    void testGetShortCookie() {
         Cookie cookie = provider.getShortCookie();
-        LOG.info(cookie);
+        log.info(cookie);
         assertThat(cookie.length(), lessThanOrEqualTo(provider.getShortLength()));
     }
 
@@ -68,7 +79,7 @@ public class CookieResourceProviderTest {
      * Test method for {@link CookieResourceProvider#getLongCookie()}.
      */
     @Test
-    public void testGetLongCookie() {
+    void testGetLongCookie() {
         Cookie cookie = provider.getLongCookie();
         assertThat(cookie.length(), greaterThanOrEqualTo(provider.getShortLength()));
     }
@@ -77,19 +88,19 @@ public class CookieResourceProviderTest {
      * Test method for {@link CookieResourceProvider#getShortCookie(int)}.
      */
     @Test
-    public void testGetShortCookieInt() {
+    void testGetShortCookieInt() {
         int n = (int) System.currentTimeMillis();
         Cookie one = provider.getShortCookie(n);
         Cookie two = provider.getShortCookie(n);
         assertEquals(one, two);
-        LOG.info(one);
+        log.info(one);
     }
 
     /**
      * Test method for {@link CookieResourceProvider#getLongCookie(int)}.
      */
     @Test
-    public void testGetLongCookieInt() {
+    void testGetLongCookieInt() {
         int n = (int) System.currentTimeMillis();
         Cookie one = provider.getLongCookie(n);
         Cookie two = provider.getLongCookie(n);
@@ -100,7 +111,7 @@ public class CookieResourceProviderTest {
      * Test method for {@link CookieResourceProvider#CookieResourceProvider(String...)}.
      */
     @Test
-    public void testCookieResourceProviderString() {
+    void testCookieResourceProviderString() {
         CookieResourceProvider literature = new CookieResourceProvider("en/literature");
         assertThat(literature.getNumberOfCookies(), is(greaterThan(1)));
     }
@@ -109,10 +120,10 @@ public class CookieResourceProviderTest {
      * Test mehthod for {@link CookieResourceProvider#CookieResourceProvider(Locale, String...)}.
      */
     @Test
-    public void testGermanCookies() {
+    void testGermanCookies() {
         CookieResourceProvider deProvider = new CookieResourceProvider(Locale.GERMAN);
         assertThat(deProvider.getSources(), hasItem("de/computer"));
-        LOG.info(deProvider.getShortCookie());
+        log.info(deProvider.getShortCookie());
     }
 
     /**
@@ -121,7 +132,7 @@ public class CookieResourceProviderTest {
      * loaded.
      */
     @Test
-    public void testWrongCountry() {
+    void testWrongCountry() {
         CookieResourceProvider stateless = new CookieResourceProvider(Locale.CANADA);
         assertThat(stateless.getSources(), not(emptyCollectionOf(String.class)));
     }
@@ -130,7 +141,7 @@ public class CookieResourceProviderTest {
      * Test method for {@link jfortune.CookieProvider#setShortLength(int)}.
      */
     @Test
-    public void testSetShortLength() {
+    void testSetShortLength() {
         provider.setShortLength(80);
         Cookie cookie = provider.getShortCookie();
         assertThat(cookie.length(), is(lessThanOrEqualTo(80)));

@@ -3,12 +3,12 @@
  */
 package jfortune.provider;
 
+import clazzfish.monitor.ResourcepathMonitor;
 import jfortune.Cookie;
 import jfortune.CookieProvider;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import patterntesting.runtime.monitor.ResourcepathMonitor;
 
 import java.io.BufferedReader;
 import java.io.IOException;

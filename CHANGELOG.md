@@ -10,12 +10,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Changed
 
 * Update to Java 11
+* changed to JUnit 6, depdendency to JUnit 4 removed
+* dependency to de.aosd.clazzfish:classfish-monitor added for classpath diving
 
 
 ### Security
 
 * generating SBOM with CycloneDX Maven Plugin
-* update to Log4J 2.17.1
+* update to Log4J 2.25
   ([CVE-2021-44832](https://nvd.nist.gov/vuln/detail/CVE-2021-44832))
 
 

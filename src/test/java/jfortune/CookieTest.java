@@ -17,7 +17,7 @@
  */
 package jfortune;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import patterntesting.runtime.junit.ObjectTester;
 
 /**
@@ -26,10 +26,10 @@ import patterntesting.runtime.junit.ObjectTester;
  * @author oboehm
  * @since 0.5 (23.12.2017)
  */
-public final class CookieTest {
+final class CookieTest {
 
     @Test
-    public void testEquals() {
+    void testEquals() {
         Cookie one = new Cookie("one");
         Cookie anotherOne = new Cookie("one");
         ObjectTester.assertEquals(one, anotherOne);
